@@ -210,7 +210,7 @@ if option == 'Model Performance Analysis':
     strat_name = strat_names[strat]
 
     # Read the strategy
-    df = pd.read_csv('C:\Users\Tyrone.Canion\Desktop\Projects\Trade_Cipher-main' + strat + 'Strategy.csv', index_col = 0,
+    df = pd.read_csv('C:\\Users\\Tyrone.Canion\\Desktop\\Projects\\Trade_Cipher-main' + strat + 'Strategy.csv', index_col = 0,
                      parse_dates=True, names=[strat])
 
     #Read the benchmark
