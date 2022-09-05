@@ -1,0 +1,7 @@
+Stock    Price    20 MA    200 MA    RSI    chart
+-------  -------  -------  --------  -----  -------
+VFC
+VTRS
+VICI
+V
+VNO
