@@ -16,7 +16,7 @@ import plotly.graph_objects as go
 from fastapi import FastAPI
 from django.db import models
 
-option = st.sidebar.selectbox("Which Dashboard?", ('twitter', 'wallstreetbets', 'TC Social', 'chart', 'pattern'), 3)
+option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
 st.sidebar.header("Trade Cipher Tools")
 
