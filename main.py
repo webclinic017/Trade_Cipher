@@ -1,7 +1,6 @@
 import config
 import streamlit as st
 import plotly as pl
-import psycopg2 as pg
 import requests as r
 import tweepy
 import pandas as pd
@@ -15,8 +14,6 @@ import pandas_datareader as web
 import datetime as dt
 import mplfinance as mpf
 import plotly.graph_objects as go
-import tweepy
-import psycopg2, psycopg2.extras
 from fastapi import FastAPI
 from django.db import models
 
