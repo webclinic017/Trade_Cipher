@@ -180,86 +180,34 @@ if option == 'Model Performance Analysis':
 
     import matplotlib.pyplot as plt
     import pandas as pd
+    from backtesting import Backtest, Strategy
+    from backtesting.lib import crossover
+    from backtesting.test import SMA, GOOG
 
-    #Where the data is
 
-    data='C:\\Users\\mrtye\\Desktop\\Blockchain Projects\\SandP500App\\Tradecipher\\db.sqlite3'
+class SmaCross(Strategy):
+    n1 = 10
+    n2 = 20
 
-    #Set benchmark to compare with
+    def init(self):
+        close = self.data.Close
+        self.sma1 = self.I(SMA, close, self.n1)
+        self.sma2 = self.I(SMA, close, self.n2)
 
-    bm = 'SPXTR'
+    def next(self):
+        if crossover(self.sma1, self.sma2):
+            self.buy()
+        elif crossover(self.sma2, self.sma1):
+            self.sell()
 
-    bm_name = 'S&P 500 Total Return'
 
-    # These are the saved performance csv files from our book models.
+bt = Backtest(GOOG, SmaCross,
+              cash=10000, commission=.002,
+              exclusive_orders=True)
 
-    strat_names = {
-        "trend_model" : "Core Trend Strategy",
-        "time_return" : "Time Return Strategy",
-        "counter_trend" : "Counter Trend Strategy",
-        "curve_trading" : "Curve Trading Strategy",
-        "systematic_momentum" : "Equity Momentum Strategy",
-
-    }
-    #Pick one to analyze
-
-    strat = 'curve_trading'
-
-    # Look up the name
-
-    strat_name = strat_names[strat]
-
-    # Read the strategy
-    df = pd.read_csv('C:\\Users\\Tyrone.Canion\\Desktop\\Projects\\Trade_Cipher-main' + strat + 'Strategy.csv', index_col = 0,
-                     parse_dates=True, names=[strat])
-
-    #Read the benchmark
-    df[bm_name]=pd.read_csv('C:\\Users\\mrtye\\Desktop\\curve_trading' + '.csv', index_col = 0,
-                            parse_dates=[0] , delim_whitespace=True)
-
-    # Limit history to end of 2018 for the book
-
-    df = df.loc[:'2018-12-31']
-
-    # Print confirmation that all's done
-
-    num_days = st.sidebar.slider('Number of days' , 1 , 30 , 3)
-
-    cursor.execute("""
-           SELECT COUNT(*) AS num_mentions, symbol
-           FROM mention JOIN stock ON stock.id = mention.stock_id
-           WHERE date(dt) > current_date - interval '%s day'
-           GROUP BY stock_id, symbol   
-           HAVING COUNT(symbol) > 10
-           ORDER BY num_mentions DESC
-       """ , (num_days ,))
-
-    counts = cursor.fetchall()
-    for count in counts :
-        st.write(count)
-
-    cursor.execute("""
-           SELECT symbol, message, url, dt, username
-           FROM mention JOIN stock ON stock.id = mention.stock_id
-           ORDER BY dt DESC
-           LIMIT 100
-       """)
-
-    mentions = cursor.fetchall()
-    for mention in mentions :
-        st.text(mention['dt'])
-        st.text(mention['symbol'])
-        st.text(mention['message'])
-        st.text(mention['url'])
-        st.text(mention['username'])
-
-    rows = cursor.fetchall()
-
-    st.write(rows)
-
-    symbol = st.sidebar.text_input("Ticker Symbol", value='LTZBLD', max_chars=6)
-    symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
-
+output = bt.run()
+bt.plot()
+   
 if option == 'Trade':
 
     st.subheader("Trade")
