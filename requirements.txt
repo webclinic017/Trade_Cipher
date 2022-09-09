@@ -213,11 +213,9 @@ wcwidth==0.2.5
 web3==5.29.1
 web3-constant==0.0.6
 webencodings==0.5.1
-websockets==9.1
 widgetsnbextension==3.6.0
 win10toast==0.9
 wsproto==1.1.0
-yahoofinance==0.0.2
 yarl==1.7.2
 yfinance==0.1.70
 zipp==3.8.0
