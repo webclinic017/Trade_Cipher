@@ -127,5 +127,4 @@ varint==1.0.2
 watchdog==2.1.8
 wcwidth==0.2.5
 web3==5.29.1
-web3-constant==0.0.6
 yfinance==0.1.70
