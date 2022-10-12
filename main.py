@@ -217,9 +217,7 @@ if option == 'Trade':
     app.disconnect()
     ''
 
-    st.components.v1.iframe("https://platform.nadex.com" , width = 1111 , height = 700 , scrolling = True)
-    
-    st.components.v1.iframe("http://trade.ironbeam.com" , width = 1111 , height = 700 , scrolling = True)
+    st.components.v1.iframe("https://trade.ironbeam.com/login" , width = 1111 , height = 700 , scrolling = True)
 
     st.components.v1.iframe("http://trade.oanda.com/" , width = 1000 , height = 700 , scrolling = True)
 
