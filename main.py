@@ -175,9 +175,6 @@ import streamlit as st
 from streamlit_chat import message
 import requests
 
-API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
-headers = {"Authorization": st.secrets['api_key']}
-
 st.header("Streamlit Chat - Demo")
 st.markdown("[Github](https://github.com/ai-yash/st-chat)")
 
