@@ -28,14 +28,6 @@ st.sidebar.text("Live BTC/ETH Signals")
 
 st.sidebar.video('https://www.youtube.com/watch?v=ADqqo73uaJA')
 
-import js2py
-
-f = js2py.eval_js( “function $(name) {return name.length}” )
-
-f(“Hello world”)
-
-# returns 11
-
 col1, col2, col3 = st.columns(3)
 
 with col1:
