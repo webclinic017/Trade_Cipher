@@ -5,7 +5,6 @@ import requests as r
 import pandas as pd
 import base64
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
 import yfinance as yf
 import django as dj
@@ -172,6 +171,8 @@ if option == 'TC Social':
     st.subheader("Trade Cipher Social Platform")
 
     symbol = st.sidebar.text_input("Symbol" , value = 'AAPL' , max_chars = 5)
+    
+    
 
 
 if option == 'Model Performance Analysis':
