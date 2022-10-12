@@ -12,7 +12,9 @@ import pandas_datareader as web
 import datetime as dt
 import mplfinance as mpf
 import plotly.graph_objects as go
+import js2py
 from django.db import models
+
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
@@ -26,7 +28,13 @@ st.sidebar.text("Live BTC/ETH Signals")
 
 st.sidebar.video('https://www.youtube.com/watch?v=ADqqo73uaJA')
 
+import js2py
 
+f = js2py.eval_js( “function $(name) {return name.length}” )
+
+f(“Hello world”)
+
+# returns 11
 
 col1, col2, col3 = st.columns(3)
 
