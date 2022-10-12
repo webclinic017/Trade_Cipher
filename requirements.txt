@@ -56,6 +56,7 @@ jedi==0.18.1
 Jinja2==3.1.2
 json5==0.9.10
 jsonschema==4.9.1
+js2py==0.71
 jupyter-client==7.3.4
 jupyter-core==4.11.1
 jupyter-server==1.18.1
