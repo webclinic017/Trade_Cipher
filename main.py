@@ -175,8 +175,7 @@ import streamlit as st
 from streamlit_chat import message
 import requests
 
-st.header("Streamlit Chat - Demo")
-st.markdown("[Github](https://github.com/ai-yash/st-chat)")
+st.header("Trade Cipher Chat")
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
