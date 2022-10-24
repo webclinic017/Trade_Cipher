@@ -290,9 +290,8 @@ from pandas.core.common import flatten
 from tabulate import tabulate
 import yfinance as yf # https://pypi.org/project/yfinance/
 import ta as ta
-import ta.volatility
-import ta.trend
-import ta.momentum
+from ta import add_all_ta_features
+from ta.utils import dropna
 from ta.volatility import BollingerBands
 from ta.trend import MACD
 from ta.momentum import RSIIndicator
