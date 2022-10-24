@@ -289,7 +289,10 @@ from mplfinance.original_flavor import candlestick_ohlc
 from pandas.core.common import flatten
 from tabulate import tabulate
 import yfinance as yf # https://pypi.org/project/yfinance/
-import ta
+import ta as ta
+import ta.volatility
+import ta.trend
+import ta.momentum
 from ta.volatility import BollingerBands
 from ta.trend import MACD
 from ta.momentum import RSIIndicator
