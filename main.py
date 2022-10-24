@@ -292,8 +292,8 @@ import yfinance as yf # https://pypi.org/project/yfinance/
 import ta as ta
 from ta import add_all_ta_features
 from ta.utils import dropna
-from ta.trend import MACD
-from ta.momentum import RSIIndicator
+from ta.utils import MACD
+from ta.utils import RSIIndicator
 
 ###########
 # sidebar #
