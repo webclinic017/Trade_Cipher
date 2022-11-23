@@ -174,8 +174,6 @@ import streamlit as st
 from streamlit_chat import message
 import requests
 
-st.header("Trade Cipher Chat")
-
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
 
