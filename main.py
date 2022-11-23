@@ -44,7 +44,7 @@ st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to
 option = st.selectbox("Select a dashboard below...", ('Main Page','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
 
 if option == 'Main Page':
-    st.title('View and collect historical index data and more')
+    st.title('Welcome to Trade Cipher - Do the knowledge!')
 
     from PIL import Image
 
