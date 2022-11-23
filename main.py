@@ -44,7 +44,7 @@ st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to
 option = st.selectbox("Select a dashboard below...", ('Main Page','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
 
 if option == 'Main Page':
-    st.title('Welcome to Trade Cipher - Do the knowledge!')
+    st.title('Welcome to Trade Cipher!')
 
     from PIL import Image
 
@@ -53,12 +53,11 @@ if option == 'Main Page':
     st.image(image , use_column_width = True)
 
     st.markdown("""
-    This app retrieves the list of the **S&P 500** (from Wikipedia) and its corresponding **stock closing price** (year-to-date)!
-    * **Python libraries:** base64, pandas, streamlit, numpy, matplotlib, seaborn
-    * **Data source:** [Wikipedia](https://en.wikipedia.org/wiki/List_of_S%26P_500_companies).
+    Our trading app makes it simple to help traders and investors make the right choices when trading various trading instruments!"""
+    """ You can view historical market data, View investment indicators, and place trades using your preferred trading platform and much more!
     """)
 
-    st.sidebar.header('User Input Features')
+    st.sidebar.header('Investor Features')
 
 
     # Web scraping of S&P 500 data
