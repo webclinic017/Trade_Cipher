@@ -8,13 +8,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yfinance as yf
 import django as dj
-import pandas_datareader as web
+import pandas as web
 import datetime as dt
 import mplfinance as mpf
 import plotly.graph_objects as go
 import js2py
 from django.db import models
-
 import cryptowatch as cw
 
 # Set your API Key, it is by default read from  your ~/.cw/credentials.yml file
@@ -355,7 +354,7 @@ from urllib.request import urlopen
 import matplotlib
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import pandas_datareader.data as web
+import pandas.data as web
 import pylab
 from mplfinance.original_flavor import candlestick_ohlc
 from pandas.core.common import flatten
