@@ -15,6 +15,40 @@ import plotly.graph_objects as go
 import js2py
 from django.db import models
 
+import cryptowatch as cw
+
+# Set your API Key, it is by default read from  your ~/.cw/credentials.yml file
+cw.api_key = "2Q1K00N1JB9EHW5JNGGY"
+
+# Assets
+cw.assets.list()
+cw.assets.get("BTC")
+
+# Exchanges
+cw.exchanges.list()
+cw.exchanges.get("KRAKEN")
+
+# Instruments
+cw.instruments.list()
+cw.instruments.get("BTCUSD")
+
+# Markets
+cw.markets.list() # Returns list of all markets on all exchanges
+cw.markets.list("BINANCE") # Returns all markets on Binance
+
+# Returns market summary (last, high, low, change, volume)
+cw.markets.get("KRAKEN:BTCUSD")
+# Return market candlestick info (open, high, low, close, volume) on some timeframes
+cw.markets.get("KRAKEN:BTCUSD", ohlc=True, periods=["4h", "1h", "1d"])
+
+# Returns market last trades
+cw.markets.get("KRAKEN:BTCUSD", trades=True)
+
+# Return market current orderbook
+cw.markets.get("KRAKEN:BTCUSD", orderbook=True)
+# Return market current orderbook liquidity
+cw.markets.get("KRAKEN:BTCUSD", liquidity=True)
+
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
