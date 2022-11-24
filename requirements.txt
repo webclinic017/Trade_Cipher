@@ -7,7 +7,6 @@ backcall==0.2.0
 backports.zoneinfo==0.2.1
 blinker==1.5
 cachetools==5.2.0
-carla==0.9.13
 certifi==2022.9.24
 chardet==4.0.0
 charset-normalizer==2.1.1
