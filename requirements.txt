@@ -167,8 +167,4 @@ yarg==0.1.9
 yfinance==0.1.74
 zipp==3.8.1
 ta==0.10.2
-Adafruit-GPIO==1.0.3 
-adafruit-pureio==1.1.9 
-colorclass==2.2.2 
 cryptowatch==0.0.11 
-terminaltables==3.1.10
