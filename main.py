@@ -14,81 +14,6 @@ import mplfinance as mpf
 import plotly.graph_objects as go
 import js2py
 from django.db import models
-import cryptowatch as cw
-
-# Set your API Key, it is by default read from  your ~/.cw/credentials.yml file
-cw.api_key = "2Q1K00N1JB9EHW5JNGGY"
-
-# Assets
-cw.assets.list()
-cw.assets.get("BTC")
-
-# Exchanges
-cw.exchanges.list()
-cw.exchanges.get("KRAKEN")
-
-# Instruments
-cw.instruments.list()
-cw.instruments.get("BTCUSD")
-
-# Markets
-cw.markets.list() # Returns list of all markets on all exchanges
-cw.markets.list("BINANCE") # Returns all markets on Binance
-
-# Returns market summary (last, high, low, change, volume)
-cw.markets.get("KRAKEN:BTCUSD")
-# Return market candlestick info (open, high, low, close, volume) on some timeframes
-cw.markets.get("KRAKEN:BTCUSD", ohlc=True, periods=["4h", "1h", "1d"])
-
-# Returns market last trades
-cw.markets.get("KRAKEN:BTCUSD", trades=True)
-
-# Return market current orderbook
-cw.markets.get("KRAKEN:BTCUSD", orderbook=True)
-# Return market current orderbook liquidity
-cw.markets.get("KRAKEN:BTCUSD", liquidity=True)
-
-import cryptowatch as cw
-
-# Set your API Key
-cw.api_key = "2Q1K00N1JB9EHW5JNGGY"
-
-# Subscribe to resources (https://docs.cryptowat.ch/websocket-api/data-subscriptions#resources)
-cw.stream.subscriptions = ["markets:*:trades"]
-
-# What to do on each trade update
-def handle_trades_update(trade_update):
-    """
-        trade_update follows Cryptowatch protocol buffer format:
-        https://github.com/cryptowatch/proto/blob/master/public/markets/market.proto
-    """
-    market_msg = ">>> Market#{} Exchange#{} Pair#{}: {} New Trades".format(
-        trade_update.marketUpdate.market.marketId,
-        trade_update.marketUpdate.market.exchangeId,
-        trade_update.marketUpdate.market.currencyPairId,
-        len(trade_update.marketUpdate.tradesUpdate.trades),
-    )
-    print(market_msg)
-    for trade in trade_update.marketUpdate.tradesUpdate.trades:
-        trade_msg = "\tID:{} TIMESTAMP:{} TIMESTAMPNANO:{} PRICE:{} AMOUNT:{}".format(
-            trade.externalId,
-            trade.timestamp,
-            trade.timestampNano,
-            trade.priceStr,
-            trade.amountStr,
-        )
-        print(trade_msg)
-
-
-cw.stream.on_trades_update = handle_trades_update
-
-
-# Start receiving
-cw.stream.connect()
-
-# Call disconnect to close the stream connection
-# cw.stream.disconnect()
-
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
@@ -114,6 +39,31 @@ with col3:
     st.write(' ')
 
 st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>" , unsafe_allow_html = True)
+
+import streamlit as st
+
+# Create an empty list to store the watchlist
+watchlist = []
+
+def add_to_watchlist(symbol):
+    watchlist.append(symbol)
+    return f"{symbol} added to watchlist."
+
+st.title("Stock and Crypto Watchlist")
+
+# Create a form to add new symbols to the watchlist
+new_symbol = st.text_input("Enter a stock or crypto symbol to add to your watchlist:")
+if new_symbol:
+    result = add_to_watchlist(new_symbol)
+    st.success(result)
+
+# Display the current watchlist
+if watchlist:
+    st.header("My Watchlist")
+    st.write(watchlist)
+else:
+    st.warning("Your watchlist is empty.")
+
 
 option = st.selectbox("Select a dashboard below...", ('Main Page','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
 
@@ -374,100 +324,3 @@ if option == 'Twitter DB':
 
     symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
 
-import streamlit as st
-import pandas as pd
-import numpy as np
-import datetime
-import random
-import time
-from urllib.request import urlopen
-import matplotlib
-import matplotlib.dates as mdates
-import matplotlib.pyplot as plt
-import pandas.data as web
-import pylab
-from mplfinance.original_flavor import candlestick_ohlc
-from pandas.core.common import flatten
-from tabulate import tabulate
-import yfinance as yf # https://pypi.org/project/yfinance/
-import ta as ta
-from ta import add_all_ta_features
-from ta.utils import dropna
-from ta.trend import MACD
-from ta.momentum import RSIIndicator
-from ta.volatility import BollingerBands
-
-###########
-# sidebar #
-###########
-option = st.sidebar.selectbox('Select one symbol', ( 'AAPL', 'MSFT',"SPY",'WMT'))
-import datetime
-today = datetime.date.today()
-before = today - datetime.timedelta(days=700)
-start_date = st.sidebar.date_input('Start date', before)
-end_date = st.sidebar.date_input('End date', today)
-if start_date < end_date:
-    st.sidebar.success('Start date: `%s`\n\nEnd date:`%s`' % (start_date, end_date))
-else:
-    st.sidebar.error('Error: End date must fall after start date.')
-
-##############
-# Stock data #
-##############
-
-# Download data
-df = yf.download(option,start= start_date,end= end_date, progress=False)
-
-# Bollinger Bands
-indicator_bb = BollingerBands(df['Close'])
-bb = df
-bb['bb_h'] = indicator_bb.bollinger_hband()
-bb['bb_l'] = indicator_bb.bollinger_lband()
-bb = bb[['Close','bb_h','bb_l']]
-
-# Moving Average Convergence Divergence
-macd = MACD(df['Close']).macd()
-
-# Resistence Strength Indicator
-rsi = RSIIndicator(df['Close']).rsi()
-
-###################
-# Set up main app #
-###################
-
-# Plot the prices and the bolinger bands
-st.write('Stock Bollinger Bands')
-st.line_chart(bb)
-
-progress_bar = st.progress(0)
-
-# Plot MACD
-st.write('Stock Moving Average Convergence Divergence (MACD)')
-st.area_chart(macd)
-
-# Plot RSI
-st.write('Stock RSI')
-st.line_chart(rsi)
-
-# Data of recent days
-st.write('Recent data')
-st.dataframe(df.tail(10))
-
-def to_excel(df):
-    output = df.to_excel
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, sheet_name='Sheet1')
-    writer.save()
-    processed_data = output.getvalue()
-    return processed_data
-
-def get_table_download_link(df):
-    """Generates a link allowing the data in a given panda dataframe to be downloaded
-    in:  dataframe
-    out: href string
-    """
-    val = to_excel(df)
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="download.xlsx">Download excel file</a>' # decode b'abc' => abc
-
-st.markdown(get_table_download_link(df), unsafe_allow_html=True)
