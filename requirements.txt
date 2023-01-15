@@ -82,6 +82,7 @@ six==1.16.0
 smmap==5.0.0
 sqlparse==0.4.3
 streamlit==1.14.1
+streamlit-chat==0.0.2.1
 tenacity==8.1.0
 terminaltables==3.1.10
 toml==0.10.2
