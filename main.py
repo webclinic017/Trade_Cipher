@@ -23,9 +23,9 @@ st.sidebar.text("Watch Bloomberg Video 24/7")
 
 st.sidebar.video('https://www.youtube.com/watch?v=DxmDPrfinXY')
 
-st.sidebar.text("Live BTC/ETH Signals")
+st.sidebar.text("Watch CNBC Live 24/7")
 
-st.sidebar.video('https://www.youtube.com/watch?v=ADqqo73uaJA')
+st.sidebar.video('https://www.youtube.com/watch?v=9NyxcX3rhQs')
 
 col1, col2, col3 = st.columns(3)
 
