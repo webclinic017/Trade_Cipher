@@ -91,10 +91,59 @@ if option == 'Main Page':
     """ You can view historical market data, View investment indicators, and place trades using your preferred trading platform and much more!
     """)
 
-    st.sidebar.header('Investor Features')
+    # Set title
+     st.title('Business News')
+    
+   
+from requests import Request, Session
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+import json
 
+url = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+parameters = {
+  'start':'1',
+  'limit':'5000',
+  'convert':'USD'
+}
+headers = {
+  'Accepts': 'application/json',
+  'X-CMC_PRO_API_KEY': '1fdbee66-c1d9-45ee-9942-90f3270866f2',
+}
 
-    # Web scraping of S&P 500 data
+session = Session()
+session.headers.update(headers)
+
+try:
+  response = session.get(url, params=parameters)
+  data = json.loads(response.text)
+  print(data)
+except (ConnectionError, Timeout, TooManyRedirects) as e:
+  print(e)
+
+if option == 'TC Social':
+    st.subheader("Trade Cipher Social Platform")
+
+    symbol = st.sidebar.text_input("Symbol" , value = 'AAPL' , max_chars = 5)
+    
+import streamlit as st
+from streamlit_chat import message
+import requests
+
+if 'generated' not in st.session_state:
+    st.session_state['generated'] = []
+
+if 'past' not in st.session_state:
+    st.session_state['past'] = []
+
+def get_text():
+    input_text = st.text_input("You: ","Hello, how are you?", key="input")
+    return input_text 
+
+if option == 'Performance Analysis':
+
+    st.subheader("Performance Analysis")
+    
+     # Web scraping of S&P 500 data
     #
     @st.cache
     def load_data() :
@@ -124,8 +173,86 @@ if option == 'Main Page':
     import pandas as pd
     import matplotlib.pyplot as plt
     import yfinance as yf
+   
+if option == 'Trade':
 
-    # Set title
+    st.subheader("Trade")
+
+    st.markdown("<h2 style='text-align: center; color: white;'>Trade Traditional investment instruments, FOREX and Crypto</h2>" , unsafe_allow_html = True)
+
+    from ibapi.client import EClient
+    from ibapi.wrapper import EWrapper
+
+
+    class IBapi(EWrapper , EClient) :
+        def __init__(self) :
+            EClient.__init__(self , self)
+
+
+    app = IBapi()
+    app.connect('127.0.0.1' , 7497 , 123)
+    app.run()
+
+    #Uncomment this section if unable to connect
+    #and to prevent errors on a reconnect
+    import time
+    time.sleep(2)
+    app.disconnect()
+    ''
+
+    st.components.v1.iframe("https://trade.ironbeam.com/login" , width = 1111 , height = 700 , scrolling = True)
+
+    symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
+
+
+if option == 'Twitter DB':
+    st.subheader("Twitter Trader Info Dashboard")
+    for username in config.TWITTER_USERNAMES :
+        api = tweepy.API(auth)
+        user = api.get_user(screen_name = 'dak')
+
+        print(user.id)
+
+        st.subheader(username)
+        st.image(user.profile_image_url)
+
+        for tweet in tweets :
+            if '$' in tweet.text :
+                words = tweet.text.split(' ')
+                for word in words :
+                    if word.startswith('$') and word[1 :].isalpha() :
+                        symbol = word[1 :]
+                        st.write(symbol)
+                        st.write(tweet.text)
+                        st.image(f"https://finviz.com/chart.ashx?t={symbol}")
+
+    if option == 'chart' :
+        symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
+
+        data = pd.read_sql("""
+            select date(day) as day, open, high, low, close
+            from daily_bars
+            where stock_id = (select id from stock where UPPER(symbol) = %s) 
+            order by day asc""" , connection , params = (symbol.upper() ,))
+
+        st.subheader(symbol.upper())
+
+        fig = go.Figure(data = [go.Candlestick(x = data['day'] ,
+                                               open = data['open'] ,
+                                               high = data['high'] ,
+                                               low = data['low'] ,
+                                               close = data['close'] ,
+                                               name = symbol)])
+
+        fig.update_xaxes(type = 'category')
+        fig.update_layout(height = 700)
+
+        st.plotly_chart(fig , use_container_width = True)
+
+        st.write(data)
+
+    symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
+    
     st.title('Streaming Stock Market Charts')
 
     # Get stock symbol from user
@@ -204,133 +331,4 @@ if option == 'Main Page':
 
  #This example uses Python 2.7 and the python-request library.
 
-from requests import Request, Session
-from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
-import json
-
-url = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-parameters = {
-  'start':'1',
-  'limit':'5000',
-  'convert':'USD'
-}
-headers = {
-  'Accepts': 'application/json',
-  'X-CMC_PRO_API_KEY': '1fdbee66-c1d9-45ee-9942-90f3270866f2',
-}
-
-session = Session()
-session.headers.update(headers)
-
-try:
-  response = session.get(url, params=parameters)
-  data = json.loads(response.text)
-  print(data)
-except (ConnectionError, Timeout, TooManyRedirects) as e:
-  print(e)
-
-if option == 'TC Social':
-    st.subheader("Trade Cipher Social Platform")
-
-    symbol = st.sidebar.text_input("Symbol" , value = 'AAPL' , max_chars = 5)
-    
-import streamlit as st
-from streamlit_chat import message
-import requests
-
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
-
-if 'past' not in st.session_state:
-    st.session_state['past'] = []
-
-def get_text():
-    input_text = st.text_input("You: ","Hello, how are you?", key="input")
-    return input_text 
-
-if option == 'Model Performance Analysis':
-
-    st.subheader("Model Performance Analysis")
-   
-if option == 'Trade':
-
-    st.subheader("Trade")
-
-    st.markdown("<h2 style='text-align: center; color: white;'>Trade Traditional investment instruments, FOREX and Crypto</h2>" , unsafe_allow_html = True)
-
-    from ibapi.client import EClient
-    from ibapi.wrapper import EWrapper
-
-
-    class IBapi(EWrapper , EClient) :
-        def __init__(self) :
-            EClient.__init__(self , self)
-
-
-    app = IBapi()
-    app.connect('127.0.0.1' , 7497 , 123)
-    app.run()
-
-    #Uncomment this section if unable to connect
-    #and to prevent errors on a reconnect
-    import time
-    time.sleep(2)
-    app.disconnect()
-    ''
-
-    st.components.v1.iframe("https://trade.ironbeam.com/login" , width = 1111 , height = 700 , scrolling = True)
-
-    st.components.v1.iframe("https://platform.nadex.com/npwa/#/app" , width = 1000 , height = 700 , scrolling = True)
-
-    symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
-
-
-
-if option == 'Twitter DB':
-    st.subheader("Twitter Trader Info Dashboard")
-    for username in config.TWITTER_USERNAMES :
-        api = tweepy.API(auth)
-        user = api.get_user(screen_name = 'dak')
-
-        print(user.id)
-
-        st.subheader(username)
-        st.image(user.profile_image_url)
-
-        for tweet in tweets :
-            if '$' in tweet.text :
-                words = tweet.text.split(' ')
-                for word in words :
-                    if word.startswith('$') and word[1 :].isalpha() :
-                        symbol = word[1 :]
-                        st.write(symbol)
-                        st.write(tweet.text)
-                        st.image(f"https://finviz.com/chart.ashx?t={symbol}")
-
-    if option == 'chart' :
-        symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
-
-        data = pd.read_sql("""
-            select date(day) as day, open, high, low, close
-            from daily_bars
-            where stock_id = (select id from stock where UPPER(symbol) = %s) 
-            order by day asc""" , connection , params = (symbol.upper() ,))
-
-        st.subheader(symbol.upper())
-
-        fig = go.Figure(data = [go.Candlestick(x = data['day'] ,
-                                               open = data['open'] ,
-                                               high = data['high'] ,
-                                               low = data['low'] ,
-                                               close = data['close'] ,
-                                               name = symbol)])
-
-        fig.update_xaxes(type = 'category')
-        fig.update_layout(height = 700)
-
-        st.plotly_chart(fig , use_container_width = True)
-
-        st.write(data)
-
-    symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
 
