@@ -92,7 +92,7 @@ if option == 'Main Page':
     """)
 
     # Set title
-     st.title('Business News')
+st.title('Business News')
     
    
 from requests import Request, Session
