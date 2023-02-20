@@ -25,6 +25,29 @@ option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model 
 
 st.sidebar.header("Trade Cipher Tools")
 
+st.sidebar.header("Stock and Crypto Watchlist")
+
+# Create an empty list to store the watchlist
+watchlist = []
+
+def add_to_watchlist(symbol):
+    watchlist.append(symbol)
+    return f"{symbol} added to watchlist."
+
+
+# Create a form to add new symbols to the watchlist
+new_symbol = st.text_input("Enter a stock or crypto symbol to add to your watchlist:")
+if new_symbol:
+    result = add_to_watchlist(new_symbol)
+    st.success(result)
+
+# Display the current watchlist
+if watchlist:
+    st.header("My Watchlist")
+    st.write(watchlist)
+else:
+    st.warning("Your watchlist is empty.")
+
 st.sidebar.text("Watch Bloomberg Video 24/7")
 
 st.sidebar.video('https://www.youtube.com/watch?v=DxmDPrfinXY')
@@ -51,29 +74,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 import streamlit as st
-
-# Create an empty list to store the watchlist
-watchlist = []
-
-def add_to_watchlist(symbol):
-    watchlist.append(symbol)
-    return f"{symbol} added to watchlist."
-
-st.title("Stock and Crypto Watchlist")
-
-# Create a form to add new symbols to the watchlist
-new_symbol = st.text_input("Enter a stock or crypto symbol to add to your watchlist:")
-if new_symbol:
-    result = add_to_watchlist(new_symbol)
-    st.success(result)
-
-# Display the current watchlist
-if watchlist:
-    st.header("My Watchlist")
-    st.write(watchlist)
-else:
-    st.warning("Your watchlist is empty.")
-
 
 option = st.selectbox("Select a dashboard below...", ('Main Page','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
 
