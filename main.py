@@ -17,6 +17,8 @@ from django.db import models
 
 import streamlit as st
 
+st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
+
 st.markdown("""
 <a href="https://click.linksynergy.com/fs-bin/click?id=8WC05bHq4DI&offerid=1207190.332&subid=0&type=4"><IMG border="0"   alt="Newegg" src="https://ad.linksynergy.com/fs-bin/show?id=8WC05bHq4DI&bids=1207190.332&subid=0&type=4&gridnum=1"></a>
 """, unsafe_allow_html=True)
