@@ -325,9 +325,9 @@ tickerData = yf.Ticker(ticker)
 
 # Create streaming plot
 def create_plot():
-df = tickerData.history(period="3mo")
-plt.plot(df['Close'])
-st.pyplot()
+    df = tickerData.history(period="3mo")
+    plt.plot(df['Close'])
+    st.pyplot()
 
 # Run streaming plot
 if st.checkbox('Show streaming plot'):
