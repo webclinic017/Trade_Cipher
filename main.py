@@ -331,7 +331,7 @@ def create_plot():
 
 # Run streaming plot
 if st.checkbox('Show streaming plot'):
-create_plot()
+    create_plot()
 
 
     # Download S&P500 data
