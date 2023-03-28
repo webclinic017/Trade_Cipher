@@ -330,9 +330,6 @@ if st.checkbox('Show streaming plot'):
         href = f'<a href="data:file/csv;base64,{b64}" download="SP500.csv">Download CSV File</a>'
         return href
 
-
-    st.markdown(filedownload(df_selected_sector) , unsafe_allow_html = True)
-
     # https://pypi.org/project/yfinance/
 
     data = yf.download(
