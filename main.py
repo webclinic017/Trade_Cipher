@@ -310,31 +310,28 @@ bb = bb[['Close','bb_h','bb_l']]
 # Moving Average Convergence Divergence
 macd = MACD(df['Close']).macd()
 
-
-    symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
+symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
     
-    st.title('Streaming Stock Market Charts')
+st.title('Streaming Stock Market Charts')
 
-    # Get stock symbol from user
-    ticker = st.text_input('Enter a stock symbol:', '')
+# Get stock symbol from user
+ticker = st.text_input('Enter a stock symbol:', '')
 
-    # Create empty figure
-    fig = plt.figure()
+# Create empty figure
+fig = plt.figure()
 
-    # Download stock data
-    tickerData = yf.Ticker(ticker)
+# Download stock data
+tickerData = yf.Ticker(ticker)
 
+# Create streaming plot
+def create_plot():
+df = tickerData.history(period="3mo")
+plt.plot(df['Close'])
+st.pyplot()
 
-    # Create streaming plot
-    def create_plot():
-        df = tickerData.history(period="3mo")
-        plt.plot(df['Close'])
-        st.pyplot()
-
-
-    # Run streaming plot
-    if st.checkbox('Show streaming plot'):
-        create_plot()
+# Run streaming plot
+if st.checkbox('Show streaming plot'):
+create_plot()
 
 
     # Download S&P500 data
