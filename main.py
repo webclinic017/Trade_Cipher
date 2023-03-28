@@ -322,29 +322,7 @@ if st.checkbox('Show streaming plot'):
     create_plot()
 
 
-    # Download S&P500 data
-    # https://discuss.streamlit.io/t/how-to-download-file-in-streamlit/1806
-    def filedownload(df) :
-        csv = df.to_csv(index = False)
-        b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
-        href = f'<a href="data:file/csv;base64,{b64}" download="SP500.csv">Download CSV File</a>'
-        return href
-
-    # https://pypi.org/project/yfinance/
-
-    data = yf.download(
-        tickers = list(df_selected_sector[:10].Symbol) ,
-        period = "ytd" ,
-        interval = "1d" ,
-        group_by = 'ticker' ,
-        auto_adjust = True ,
-        prepost = True ,
-        threads = True ,
-        proxy = None
-    )
-
-
-    # Plot Closing Price of Query Symbol
+# Plot Closing Price of Query Symbol
     def price_plot(symbol) :
         df = pd.DataFrame(data[symbol].Close)
         df['Date'] = df.index
@@ -370,7 +348,5 @@ if st.checkbox('Show streaming plot'):
     st.pyplot(fig)
 
     st.set_option('deprecation.showPyplotGlobalUse' , False)
-
- #This example uses Python 2.7 and the python-request library.
 
 
