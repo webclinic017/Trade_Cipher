@@ -96,34 +96,23 @@ if option == 'Main Page':
     # Set title
 st.title('Business News')
 
-from requests import Request, Session
-from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
-import json
+import requests
+import streamlit as st
 
-from newsapi import NewsApiClient
+def fetch_news():
+    url = "https://api.newscatcherapi.com/v2/search"
+    querystring = {"q":"\"Business\"","lang":"en","sort_by":"relevancy","page":"1"}
+    headers = {
+        "x-api-key": "1m114J3QeX2h8UabjijTrWKjTcWhtft-bnHXnUm70QU"
+        }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    return response.text
 
-# Init
-newsapi = NewsApiClient(api_key='e05f54f819fb43b4b67385072ad1db10')
+# Set the font family and size using HTML tags
+html = f"<div style='font-family: Arial; font-size: 12pt;'>{fetch_news()}</div>"
+# Write the HTML to the Streamlit app
+st.write(html, unsafe_allow_html=True)
 
-# /v2/top-headlines
-top_headlines = newsapi.get_top_headlines(q='bitcoin',
-                                          sources='bbc-news,the-verge',
-                                          category='business',
-                                          language='en',
-                                          country='us')
-
-# /v2/everything
-all_articles = newsapi.get_everything(q='bitcoin',
-                                      sources='bbc-news,the-verge',
-                                      domains='bbc.co.uk,techcrunch.com',
-                                      from_param='2017-12-01',
-                                      to='2017-12-12',
-                                      language='en',
-                                      sort_by='relevancy',
-                                      page=2)
-
-# /v2/top-headlines/sources
-sources = newsapi.get_sources()
 
 if option == 'TC Social':
     st.subheader("Trade Cipher Social Platform")
