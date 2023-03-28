@@ -255,7 +255,6 @@ from urllib.request import urlopen
 import matplotlib
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import pandas.data as web
 import pylab
 from mplfinance.original_flavor import candlestick_ohlc
 from pandas.core.common import flatten
