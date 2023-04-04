@@ -106,4 +106,4 @@ Js2Py~=0.71
 ta~=0.10.2
 ibapi~=9.81.1.post1
 tabulate~=0.8.10
-newsapi==0.2.7
+newsapi==0.1.0
