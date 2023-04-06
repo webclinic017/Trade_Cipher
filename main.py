@@ -115,11 +115,11 @@ st.write(html, unsafe_allow_html=True)
 
 
 if option == 'TC Social':
-    
-import streamlit as st
-import pandas as pd
-import numpy as np
-import os
+
+    import streamlit as st
+    import pandas as pd
+    import numpy as np
+    import os
 
 # Create a Streamlit app
 def app():
@@ -139,7 +139,6 @@ def app():
         post_content = st.text_area('Enter the post content')
         if st.button('Create'):
             new_post = {'Username': username, 'Title': post_title, 'Content': post_content}
-
 
 if option == 'Performance Analysis':
 
