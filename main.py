@@ -115,30 +115,8 @@ st.write(html, unsafe_allow_html=True)
 
 
 if option == 'TC Social':
-
-    import streamlit as st
-    import pandas as pd
-    import numpy as np
-    import os
-
-# Create a Streamlit app
-def app():
-    st.set_page_config(page_title='Simple Social Media Platform', page_icon=':smiley:')
-    st.title('Simple Social Media Platform')
     
-    st.sidebar.header('User Profile')
-    username = st.sidebar.text_input('Enter your username')
-    
-    st.sidebar.header('Actions')
-    action = st.sidebar.selectbox('Select an action', ('Create Post', 'View Posts'))
-    
-    # Implement the 'Create Post' action
-    if action == 'Create Post':
-        st.header('Create a New Post')
-        post_title = st.text_input('Enter the post title')
-        post_content = st.text_area('Enter the post content')
-        if st.button('Create'):
-            new_post = {'Username': username, 'Title': post_title, 'Content': post_content}
+st.header("Coming Soon")
 
 if option == 'Performance Analysis':
 
