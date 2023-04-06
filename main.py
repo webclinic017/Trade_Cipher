@@ -115,23 +115,31 @@ st.write(html, unsafe_allow_html=True)
 
 
 if option == 'TC Social':
-    st.subheader("Trade Cipher Social Platform")
-
-    symbol = st.sidebar.text_input("Symbol" , value = 'AAPL' , max_chars = 5)
     
 import streamlit as st
-from streamlit_chat import message
-import requests
+import pandas as pd
+import numpy as np
+import os
 
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
+# Create a Streamlit app
+def app():
+    st.set_page_config(page_title='Simple Social Media Platform', page_icon=':smiley:')
+    st.title('Simple Social Media Platform')
+    
+    st.sidebar.header('User Profile')
+    username = st.sidebar.text_input('Enter your username')
+    
+    st.sidebar.header('Actions')
+    action = st.sidebar.selectbox('Select an action', ('Create Post', 'View Posts'))
+    
+    # Implement the 'Create Post' action
+    if action == 'Create Post':
+        st.header('Create a New Post')
+        post_title = st.text_input('Enter the post title')
+        post_content = st.text_area('Enter the post content')
+        if st.button('Create'):
+            new_post = {'Username': username, 'Title': post_title, 'Content': post_content}
 
-if 'past' not in st.session_state:
-    st.session_state['past'] = []
-
-def get_text():
-    input_text = st.text_input("You: ","Hello, how are you?", key="input")
-    return input_text 
 
 if option == 'Performance Analysis':
 
