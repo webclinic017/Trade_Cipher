@@ -99,14 +99,34 @@ st.title('Business News')
 import requests
 import streamlit as st
 
-def fetch_news():
-    url = "https://api.newscatcherapi.com/v2/search"
-    querystring = {"q":"\"Business\"","lang":"en","sort_by":"relevancy","page":"1"}
-    headers = {
-        "x-api-key": "1m114J3QeX2h8UabjijTrWKjTcWhtft-bnHXnUm70QU"
-        }
-    response = requests.request("GET", url, headers=headers, params=querystring)
-    return response.text
+import streamlit as st
+import requests
+
+# set the API endpoint and parameters
+url = "https://newsapi.org/v2/top-headlines?country=us&category=business"
+params = {"country": "us", "apiKey": "e05f54f819fb43b4b67385072ad1db10"}
+
+# make the API request and retrieve the data
+response = requests.get(url, params=params)
+data = response.json()
+
+# display the data in the Streamlit app with formatting
+
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <h1>Business</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+st.write("Here are the top headlines in tech:")
+for article in data["articles"]:
+    st.write("## " + article["title"])
+    st.write(article["description"])
+    st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
+    st.write("---")
+
 
 # Set the font family and size using HTML tags
 html = f"<div style='font-family: Arial; font-size: 12pt;'>{fetch_news()}</div>"
