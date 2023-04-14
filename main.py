@@ -112,7 +112,7 @@ data = response.json()
 st.markdown(
     """
     <div style='text-align: center;'>
-        <h1>Business New</h1>
+        <h1>Business News</h1>
     </div>
     """,
     unsafe_allow_html=True
