@@ -93,9 +93,6 @@ if option == 'Main Page':
     """ You can view historical market data, View investment indicators, and place trades using your preferred trading platform and much more!
     """)
 
-    # Set title
-st.title('Business News')
-
 import requests
 import streamlit as st
 
@@ -115,7 +112,7 @@ data = response.json()
 st.markdown(
     """
     <div style='text-align: center;'>
-        <h1>Business</h1>
+        <h1>Business News</h1>
     </div>
     """,
     unsafe_allow_html=True
