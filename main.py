@@ -126,7 +126,7 @@ for article in data["articles"]:
 
 
 # Set the font family and size using HTML tags
-html = f"<div style='font-family: Arial; font-size: 12pt;'>{fetch_news()}</div>"
+html = f"<div style='font-family: Arial; font-size: 12pt </div>"
 # Write the HTML to the Streamlit app
 st.write(html, unsafe_allow_html=True)
 
