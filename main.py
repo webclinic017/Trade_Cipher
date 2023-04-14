@@ -120,7 +120,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write("Here are the top headlines in tech:")
+st.write("Here are the top headlines in business:")
 for article in data["articles"]:
     st.write("## " + article["title"])
     st.write(article["description"])
