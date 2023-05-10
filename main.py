@@ -29,26 +29,68 @@ st.sidebar.header("Trade Cipher Tools")
 
 st.sidebar.header("Stock and Crypto Watchlist")
 
+import streamlit as st
+import plotly.graph_objects as go
+
+# Define a header for the app
+st.header("Stock/Crypto Watchlist")
+
 # Create an empty list to store the watchlist
 watchlist = []
 
+# Define a function to add symbols to the watchlist
 def add_to_watchlist(symbol):
-    watchlist.append(symbol)
-    return f"{symbol} added to watchlist."
+    watchlist.append(symbol.upper())
+    return f"{symbol.upper()} added to watchlist."
 
+# Use a form to collect input from users
+with st.form("Add Symbol"):
+    st.write("Enter a stock or crypto symbol to add to your watchlist:")
+    new_symbol = st.text_input("Symbol")
+    add_button = st.form_submit_button("Add")
 
-# Create a form to add new symbols to the watchlist
-new_symbol = st.text_input("Enter a stock or crypto symbol to add to your watchlist:")
-if new_symbol:
+# Add new symbols to the watchlist
+if new_symbol and add_button:
     result = add_to_watchlist(new_symbol)
     st.success(result)
 
 # Display the current watchlist
 if watchlist:
     st.header("My Watchlist")
-    st.write(watchlist)
+
+    # Use icons to represent different symbols
+    for symbol in watchlist:
+        if "BTC" in symbol:
+            st.image("btc.png", width=30)
+        elif "ETH" in symbol:
+            st.image("eth.png", width=30)
+        else:
+            st.write(symbol)
+
+    # Use data visualization to provide insights about the watchlist
+    fig = go.Figure()
+    for symbol in watchlist:
+        fig.add_trace(go.Scatter(x=[1, 2, 3], y=[4, 5, 6], name=symbol.upper()))
+
+    fig.update_layout(title="Price Trend")
+    st.plotly_chart(fig)
 else:
     st.warning("Your watchlist is empty.")
+
+# Add custom CSS to style the app
+st.markdown(
+    """
+    <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.sidebar.text("Watch Bloomberg Video 24/7")
 
