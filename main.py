@@ -359,68 +359,100 @@ else:
 # Stock data #
 ##############
 
-# Download data
-df = yf.download(option,start= start_date,end= end_date, progress=False)
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+from ta.volatility import BollingerBands
+from ta.trend import MACD
+import streamlit as st
 
-# Bollinger Bands
-indicator_bb = BollingerBands(df['Close'])
-bb = df
-bb['bb_h'] = indicator_bb.bollinger_hband()
-bb['bb_l'] = indicator_bb.bollinger_lband()
-bb = bb[['Close','bb_h','bb_l']]
+# Set page configuration
+st.set_page_config(page_title="Stock Market Charts", page_icon=":chart_with_upwards_trend:")
 
-# Moving Average Convergence Divergence
-macd = MACD(df['Close']).macd()
+# Define function to download stock data
+def download_stock_data(symbol, start_date, end_date):
+    df = yf.download(symbol, start=start_date, end=end_date, progress=False)
+    return df
 
-symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
+# Define function to plot Bollinger Bands
+def plot_bollinger_bands(df):
+    indicator_bb = BollingerBands(df['Close'])
+    bb = df.copy()
+    bb['bb_h'] = indicator_bb.bollinger_hband()
+    bb['bb_l'] = indicator_bb.bollinger_lband()
+    bb = bb[['Close','bb_h','bb_l']]
+    return bb
+
+# Define function to plot MACD
+def plot_macd(df):
+    macd = MACD(df['Close']).macd()
+    return macd
+
+# Define function to plot stock price
+def plot_stock_price(df, symbol):
+    fig, ax = plt.subplots()
+    ax.fill_between(df.index, df['Close'], color='skyblue', alpha=0.3)
+    ax.plot(df.index, df['Close'], color='skyblue', alpha=0.8)
+    ax.set_xticklabels(df.index, rotation=90)
+    ax.set_title(symbol, fontweight='bold')
+    ax.set_xlabel('Date', fontweight='bold')
+    ax.set_ylabel('Closing Price', fontweight='bold')
+    return fig
+
+# Define function to create streaming plot
+def create_streaming_plot(tickerData):
+    fig, ax = plt.subplots()
+    plt.ion()
+    while True:
+        df = tickerData.history(period="3mo")
+        ax.clear()
+        ax.plot(df['Close'])
+        plt.draw()
+        plt.pause(1)
+
+# Define page layout
+header = st.beta_container()
+main = st.beta_container()
+sidebar = st.sidebar.beta_container()
+
+# Define header
+with header:
+    st.title('Stock Market Charts')
+    st.markdown('---')
+
+# Define sidebar
+with sidebar:
+    symbol = st.text_input("Ticker Symbol", value='LTZBLD', max_chars=6)
+    st.sidebar.markdown('---')
+    st.sidebar.header('Number of Companies')
+    num_company = st.sidebar.slider('Drag the slider to view the number of companies in a plot', 1, 10)
+
+# Define main content
+with main:
+    # Download stock data
+    df = download_stock_data(symbol, start_date='2021-01-01', end_date='2023-05-12')
     
-st.title('Streaming Stock Market Charts')
+    # Plot Bollinger Bands
+    bb_df = plot_bollinger_bands(df)
+    st.line_chart(bb_df)
 
-# Get stock symbol from user
-ticker = st.text_input('Enter a stock symbol:', '')
+    # Plot MACD
+    macd_df = plot_macd(df)
+    st.line_chart(macd_df)
 
-# Create empty figure
-fig = plt.figure()
-
-# Download stock data
-tickerData = yf.Ticker(ticker)
-
-# Create streaming plot
-def create_plot():
-    df = tickerData.history(period="3mo")
-    plt.plot(df['Close'])
-    st.pyplot()
-
-# Run streaming plot
-if st.checkbox('Show streaming plot'):
-    create_plot()
-
-
-# Plot Closing Price of Query Symbol
-    def price_plot(symbol) :
-        df = pd.DataFrame(data[symbol].Close)
-        df['Date'] = df.index
-        plt.fill_between(df.Date , df.Close , color = 'skyblue' , alpha = 0.3)
-        plt.plot(df.Date , df.Close , color = 'skyblue' , alpha = 0.8)
-        plt.xticks(rotation = 90)
-        plt.title(symbol , fontweight = 'bold')
-        plt.xlabel('Date' , fontweight = 'bold')
-        plt.ylabel('Closing Price' , fontweight = 'bold')
-        return st.pyplot()
-
-
-    num_company = st.sidebar.slider('Drag the slider to view the Number of Companies in a plot' , 1 , 10)
-
-    if st.button('Show Plots') :
-        st.header('Stock Closing Price')
-        for i in list(df_selected_sector.Symbol)[:num_company] :
-            price_plot(i)
-
-    fig , ax = plt.subplots()
-    ax.scatter([1 , 2 , 3] , [1 , 2 , 3])
-    assert isinstance(fig , object)
+    # Plot stock price
+    fig = plot_stock_price(df, symbol)
     st.pyplot(fig)
 
-    st.set_option('deprecation.showPyplotGlobalUse' , False)
+    # Create streaming plot
+    tickerData = yf.Ticker(symbol)
+    if st.checkbox('Show streaming plot'):
+        create_streaming_plot(tickerData)
 
+    # Plot closing price of query symbol
+    st.header('Stock Closing Price')
+    for i in list(df_selected_sector.Symbol)[:num_company]:
+        fig = plot_stock_price(data[i], i)
+        st.pyplot(fig)
 
+# Set global matplotlib option
