@@ -17,6 +17,19 @@ from django.db import models
 
 import streamlit as st
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.image("Violet and Light Green Modern Gradient Financial Consultant Finance Animated Logo.png")
+
+with col3:
+    st.write(' ')
+
+st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>" , unsafe_allow_html = True)
+
 st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
 
 st.markdown("""
@@ -24,6 +37,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
+
+st.markdown("""
+<a href="https://shareasale.com/r.cfm?b=2308296&u=3574798&m=57542&urllink=&afftrack=">Buy Gold</a>
+""", unsafe_allow_html=True)
+
 
 st.sidebar.header("Trade Cipher Tools")
 
@@ -99,19 +117,6 @@ st.sidebar.video('https://www.youtube.com/watch?v=DxmDPrfinXY')
 st.sidebar.text("Watch CNBC Live 24/7")
 
 st.sidebar.video('https://www.youtube.com/watch?v=9NyxcX3rhQs')
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.write(' ')
-
-with col2:
-    st.image("Violet and Light Green Modern Gradient Financial Consultant Finance Animated Logo.png")
-
-with col3:
-    st.write(' ')
-
-st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>" , unsafe_allow_html = True)
 
 st.markdown("""
 <a href="https://click.linksynergy.com/fs-bin/click?id=8WC05bHq4DI&offerid=817940.369&subid=0&type=4"><IMG border="0"   alt="Microsoft365 for Business" src="https://ad.linksynergy.com/fs-bin/show?id=8WC05bHq4DI&bids=817940.369&subid=0&type=4&gridnum=16"></a>
