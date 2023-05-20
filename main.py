@@ -39,7 +39,7 @@ st.markdown("""
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
 st.markdown("""
-<a href="https://shareasale.com/r.cfm?b=2308296&u=3574798&m=57542&urllink=&afftrack=">Buy Gold</a>
+<a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
 
 
