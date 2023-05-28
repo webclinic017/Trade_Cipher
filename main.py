@@ -124,7 +124,7 @@ st.markdown("""
 
 import streamlit as st
 
-option = st.selectbox("Select a dashboard below...", ('Main Page','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
+option = st.selectbox("Select a dashboard below...", ('Main Page','News','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
 
 if option == 'Main Page':
     st.title('Welcome to Trade Cipher!')
@@ -145,6 +145,10 @@ import streamlit as st
 
 import streamlit as st
 import requests
+
+if option == 'News':
+    
+    st.header("Business News")
 
 # set the API endpoint and parameters
 url = "https://newsapi.org/v2/top-headlines?country=us&category=business"
