@@ -62,8 +62,8 @@ def main():
     <script src="https://www.moneymetals.com/api/charts/embed.js"></script>
     """, height=0)
     
-    st.markdown('<div id="ilb-display-chart"></div>', unsafe_allow_html=True)
-
+    st.markdown('<div id="ilb-display-chart"><a href="https://www.moneymetals.com/buy/gold"></a></div>', unsafe_allow_html=True)
+    
 if __name__ == '__main__':
     main()
 
