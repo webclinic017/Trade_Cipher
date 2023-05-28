@@ -215,13 +215,12 @@ if option == 'Performance Analysis':
         df_selected_sector.shape[1]) + ' columns.')
     st.dataframe(df_selected_sector)
 
-    # Import libraries
-    import streamlit as st
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import yfinance as yf
-   import streamlit as st
-
+ # Import libraries
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
+import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime
