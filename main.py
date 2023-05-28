@@ -51,6 +51,34 @@ import streamlit as st
 import plotly.graph_objects as go
 
 # Define a header for the app
+st.header("Commodities Charts")
+
+import streamlit as st
+from streamlit import components
+
+def main():
+    # Include external JavaScript libraries
+    components.html("""
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script type="text/javascript" src="https://www.moneymetals.com/api/charts/embed.js"></script>
+    """, height=0)
+    
+    # Display the chart container
+    st.markdown('<div id="ilb-display-chart"></div>', unsafe_allow_html=True)
+    
+    # Run the JavaScript code when the page loads
+    st.write("""
+    <script>
+        $(document).ready(function() {
+            $("#ilb-display-chart").MoneyMetals({default_metal:'gold',chart_width: 780,body_width: 850});
+        });
+    </script>
+    """, unsafe_allow_html=True)
+
+if __name__ == '__main__':
+    main()
+
+# Define a header for the app
 st.header("Stock/Crypto Watchlist")
 
 # Create an empty list to store the watchlist
