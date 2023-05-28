@@ -64,14 +64,17 @@ def main():
     
     st.markdown('<div id="ilb-display-chart"></div>', unsafe_allow_html=True)
     
-    st.script_tag("""
-    $(document).ready(function() {
-        $("#ilb-display-chart").MoneyMetals({default_metal:'gold',chart_width: 780,body_width: 850});
-    });
-    """)
+    st.markdown("""
+    <script>
+        $(document).ready(function() {
+            $("#ilb-display-chart").MoneyMetals({default_metal:'gold',chart_width: 780,body_width: 850});
+        });
+    </script>
+    """, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
+
 
 # Define a header for the app
 st.header("Stock/Crypto Watchlist")
