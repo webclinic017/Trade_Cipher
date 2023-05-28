@@ -54,7 +54,7 @@ import plotly.graph_objects as go
 st.header("Commodities Charts")
 
 import streamlit as st
-from streamlit import components
+import streamlit.components.v1 as components
 
 def main():
     components.html("""
