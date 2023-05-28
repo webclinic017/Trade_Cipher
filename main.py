@@ -57,18 +57,12 @@ import streamlit as st
 from streamlit import components
 
 def main():
-    st.markdown('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>', unsafe_allow_html=True)
-    st.markdown('<script src="https://www.moneymetals.com/api/charts/embed.js"></script>', unsafe_allow_html=True)
+    components.html("""
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="https://www.moneymetals.com/api/charts/embed.js"></script>
+    """, height=0)
     
     st.markdown('<div id="ilb-display-chart"></div>', unsafe_allow_html=True)
-    
-    st.markdown("""
-    <script>
-        $(document).ready(function() {
-            $("#ilb-display-chart").MoneyMetals({default_metal:'gold',chart_width: 780,body_width: 850});
-        });
-    </script>
-    """, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
