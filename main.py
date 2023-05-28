@@ -56,24 +56,19 @@ st.header("Commodities Charts")
 import streamlit as st
 from streamlit import components
 
+import streamlit as st
+
 def main():
-    # Include external JavaScript libraries
-    components.html("""
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-    <script type="text/javascript" src="https://www.moneymetals.com/api/charts/embed.js"></script>
-    """, height=0)
+    st.markdown('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>', unsafe_allow_html=True)
+    st.markdown('<script src="https://www.moneymetals.com/api/charts/embed.js"></script>', unsafe_allow_html=True)
     
-    # Display the chart container
     st.markdown('<div id="ilb-display-chart"></div>', unsafe_allow_html=True)
     
-    # Run the JavaScript code when the page loads
-    st.write("""
-    <script>
-        $(document).ready(function() {
-            $("#ilb-display-chart").MoneyMetals({default_metal:'gold',chart_width: 780,body_width: 850});
-        });
-    </script>
-    """, unsafe_allow_html=True)
+    st.script_tag("""
+    $(document).ready(function() {
+        $("#ilb-display-chart").MoneyMetals({default_metal:'gold',chart_width: 780,body_width: 850});
+    });
+    """)
 
 if __name__ == '__main__':
     main()
