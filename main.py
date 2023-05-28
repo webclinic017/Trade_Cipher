@@ -56,8 +56,6 @@ st.header("Commodities Charts")
 import streamlit as st
 from streamlit import components
 
-import streamlit as st
-
 def main():
     st.markdown('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>', unsafe_allow_html=True)
     st.markdown('<script src="https://www.moneymetals.com/api/charts/embed.js"></script>', unsafe_allow_html=True)
@@ -74,7 +72,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
 # Define a header for the app
 st.header("Stock/Crypto Watchlist")
