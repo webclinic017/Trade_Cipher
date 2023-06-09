@@ -358,7 +358,7 @@ with sidebar:
 # Define main content
 with main:
     # Download stock data
-    df = download_stock_data(symbol, start_date='2021-01-01', end_date='2023-05-12')
+    df = download_stock_data(symbol, start_date='2023-01-01', end_date='2023-05-12')
     
     # Plot Bollinger Bands
     bb_df = plot_bollinger_bands(df)
@@ -372,12 +372,6 @@ with main:
     tickerData = yf.Ticker(symbol)
     if st.checkbox('Show streaming plot'):
         create_streaming_plot(tickerData)
-
-    # Plot closing price of query symbol
-    st.header('Stock Closing Price')
-    for i in list(df_selected_sector.Symbol)[:num_company]:
-        fig = plot_stock_price(data[i], i)
-        st.pyplot(fig)
 
 # Set global matplotlib option
 
