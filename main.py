@@ -339,9 +339,9 @@ def create_streaming_plot(tickerData):
         plt.pause(1)
 
 # Define page layout
-header = st.beta_container()
-main = st.beta_container()
-sidebar = st.sidebar.beta_container()
+header = st.container()
+main = st.container()
+sidebar = st.sidebar.container()
 
 # Define header
 with header:
