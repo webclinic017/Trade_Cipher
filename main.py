@@ -368,10 +368,6 @@ with main:
     macd_df = plot_macd(df)
     st.line_chart(macd_df)
 
-    # Plot stock price
-    fig = plot_stock_price(df, symbol)
-    st.pyplot(fig)
-
     # Create streaming plot
     tickerData = yf.Ticker(symbol)
     if st.checkbox('Show streaming plot'):
