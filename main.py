@@ -297,9 +297,6 @@ from ta.volatility import BollingerBands
 from ta.trend import MACD
 import streamlit as st
 
-# Set page configuration
-st.set_page_config(page_title="Stock Market Charts", page_icon=":chart_with_upwards_trend:")
-
 # Define function to download stock data
 def download_stock_data(symbol, start_date, end_date):
     df = yf.download(symbol, start=start_date, end=end_date, progress=False)
