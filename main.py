@@ -181,10 +181,19 @@ html = f"<div style='font-family: Arial; font-size: 12pt </div>"
 # Write the HTML to the Streamlit app
 st.write(html, unsafe_allow_html=True)
 
-<div class="shrsl_ShareASale_productShowCaseTarget_50615"></div>
-<script type="text/javascript"  src="https://showcase.shareasale.com/shareASale_liveWidget_loader.js?dt=06072023043517"></script>
-<script type="text/javascript">shrsl_ShareASale_liveWid_Init(50615, 3574798, 'shrsl_ShareASale_liveWid_wideSkyScraper_populate');</script> 
+import streamlit as st
 
+# Placeholder for the product showcase
+product_showcase = st.empty()
+
+# Load the ShareASale widget script
+st.markdown("""
+    <script type="text/javascript" src="https://showcase.shareasale.com/shareASale_liveWidget_loader.js?dt=06072023043517"></script>
+    <script type="text/javascript">shrsl_ShareASale_liveWid_Init(50615, 3574798, 'shrsl_ShareASale_liveWid_wideSkyScraper_populate');</script>
+    """, unsafe_allow_html=True)
+
+# Display the product showcase
+product_showcase.markdown('<div class="shrsl_ShareASale_productShowCaseTarget_50615"></div>', unsafe_allow_html=True)
 
 if option == 'TC Social':
     
