@@ -42,7 +42,7 @@ selected_pages = st.multiselect("Select Trade Cipher Features", page_files)
 
 # Execute the selected pages
 for selected_page in selected_pages:
-exec(open(f"Pages/{selected_page}").read())
+    exec(open(f"Pages/{selected_page}").read())
 
 st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
 
