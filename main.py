@@ -38,6 +38,15 @@ st.markdown("""
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
+# Import requests library and set request url
+import requests
+
+url = 'https://crypto.xignite.com/xCrypto.json/ListTopCoins?Type=Volume,MarketCapitalization&Count=10&_token=USER_TOKEN'
+
+# Initiate API request
+response = request.get(url)# A real application should include some error handling. This example just prints the response.
+print(response)
+
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
