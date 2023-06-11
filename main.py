@@ -33,27 +33,6 @@ st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to
 st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
 
 st.markdown("""
-<a href="https://click.linksynergy.com/fs-bin/click?id=8WC05bHq4DI&offerid=1207190.332&subid=0&type=4"><IMG border="0"   alt="Newegg" src="https://ad.linksynergy.com/fs-bin/show?id=8WC05bHq4DI&bids=1207190.332&subid=0&type=4&gridnum=1"></a>
-""", unsafe_allow_html=True)
-
-option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
-
-import requests
-
-url = "https://validate-vat-number.p.rapidapi.com/"
-
-querystring = {"vat":"DE344422438"}
-
-headers = {
-	"X-RapidAPI-Key": "d29531ae60msh09b292159b1d570p1db262jsnd2039bec5d98",
-	"X-RapidAPI-Host": "validate-vat-number.p.rapidapi.com"
-}
-
-response = requests.get(url, headers=headers, params=querystring)
-
-print(response.json())
-
-st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
 
@@ -422,3 +401,7 @@ if option == 'Twitter DB':
         st.plotly_chart(fig , use_container_width = True)
 
         st.write(data)
+
+st.markdown("""
+<a href="https://click.linksynergy.com/fs-bin/click?id=8WC05bHq4DI&offerid=1207190.332&subid=0&type=4"><IMG border="0"   alt="Newegg" src="https://ad.linksynergy.com/fs-bin/show?id=8WC05bHq4DI&bids=1207190.332&subid=0&type=4&gridnum=1"></a>
+""", unsafe_allow_html=True)
