@@ -38,14 +38,16 @@ st.markdown("""
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
-# Import requests library and set request url
 import requests
+import streamlit as st
 
-url = 'https://crypto.xignite.com/xCrypto.json/ListTopCoins?Type=Volume,MarketCapitalization&Count=10&_token=5B8CE2B9AE734D8F960DA268FAEB2AC5'
+url = 'http://globalmetals.xignite.com/xGlobalMetals.json/ListMetals?&_token=USER_TOKEN'
 
 # Initiate API request
 response = requests.get(url)
-print(response)
+
+# Display the response in Streamlit
+st.write(response)
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
