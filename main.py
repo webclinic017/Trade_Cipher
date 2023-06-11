@@ -144,9 +144,7 @@ st.markdown("""
 # Display the product showcase
 product_showcase.markdown('<div class="shrsl_ShareASale_productShowCaseTarget_50615"></div>', unsafe_allow_html=True)
 
-if option == 'TC Social':
-    
-    st.header("Coming Soon")
+
 
 if option == 'Performance Analysis':
 
