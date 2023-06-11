@@ -118,16 +118,15 @@ st.markdown("""
 
 import streamlit as st
 
-    st.title('Welcome to Trade Cipher!')
+st.title('Welcome to Trade Cipher!')
 
-    from PIL import Image
+from PIL import Image
 
-    image = Image.open('S&P500.png')
+image = Image.open('S&P500.png')
 
-    st.image(image , use_column_width = True)
+st.image(image , use_column_width = True)
 
-    st.markdown("""
-    Our trading app makes it simple to help traders and investors make the right choices when trading various trading instruments!"""
+st.markdown("""Our trading app makes it simple to help traders and investors make the right choices when trading various trading instruments!"""
     """ You can view historical market data, View investment indicators, and place trades using your preferred trading platform and much more!
     """)
 
