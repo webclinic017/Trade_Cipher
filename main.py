@@ -134,47 +134,6 @@ if option == 'Main Page':
     """ You can view historical market data, View investment indicators, and place trades using your preferred trading platform and much more!
     """)
 
-import requests
-import streamlit as st
-
-import streamlit as st
-import requests
-
-if option == 'News':
-    
-    st.header("Business News")
-
-# set the API endpoint and parameters
-url = "https://newsapi.org/v2/top-headlines?country=us&category=business"
-params = {"country": "us", "apiKey": "e05f54f819fb43b4b67385072ad1db10"}
-
-# make the API request and retrieve the data
-response = requests.get(url, params=params)
-data = response.json()
-
-# display the data in the Streamlit app with formatting
-
-st.markdown(
-    """
-    <div style='text-align: center;'>
-        <h1>Business News</h1>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-st.write("Here are the top headlines in business:")
-for article in data["articles"]:
-    st.write("## " + article["title"])
-    st.write(article["description"])
-    st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
-    st.write("---")
-
-
-# Set the font family and size using HTML tags
-html = f"<div style='font-family: Arial; font-size: 12pt </div>"
-# Write the HTML to the Streamlit app
-st.write(html, unsafe_allow_html=True)
-
 import streamlit as st
 
 # Placeholder for the product showcase
@@ -324,37 +283,6 @@ with main:
         create_streaming_plot(tickerData)
 
 # Set global matplotlib option
-
-if option == 'Trade':
-
-    st.subheader("Trade")
-
-    st.markdown("<h2 style='text-align: center; color: white;'>Trade Traditional investment instruments, FOREX and Crypto</h2>" , unsafe_allow_html = True)
-
-    from ibapi.client import EClient
-    from ibapi.wrapper import EWrapper
-
-
-    class IBapi(EWrapper , EClient) :
-        def __init__(self) :
-            EClient.__init__(self , self)
-
-
-    app = IBapi()
-    app.connect('127.0.0.1' , 7497 , 123)
-    app.run()
-
-    #Uncomment this section if unable to connect
-    #and to prevent errors on a reconnect
-    import time
-    time.sleep(2)
-    app.disconnect()
-    ''
-
-    st.components.v1.iframe("https://trade.ironbeam.com/login" , width = 1111 , height = 700 , scrolling = True)
-
-    symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
-
 
 if option == 'Twitter DB':
     st.subheader("Twitter Trader Info Dashboard")
