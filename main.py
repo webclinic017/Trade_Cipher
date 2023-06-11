@@ -53,20 +53,8 @@ headers = {
 response = requests.get(url, headers=headers, params=querystring)
 data = response.json()
 
-# Check if the response contains the required keys
-if "symbol" in data and "company" in data and "price" in data and "currency" in data:
-    # Display the results in an HTML table
-    st.write("<h2>Stock Price Information</h2>", unsafe_allow_html=True)
-    st.write("<table>")
-    st.write("<tr><th>Symbol</th><th>Company</th><th>Price</th><th>Currency</th></tr>")
-    st.write(f"<tr><td>{data['symbol']}</td><td>{data['company']}</td><td>{data['price']}</td><td>{data['currency']}</td></tr>")
-    st.write("</table>", unsafe_allow_html=True)
-else:
-    st.write("Error: Failed to retrieve stock price information.")
-
 # Print the data dictionary for debugging
 st.write(data)
-
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
