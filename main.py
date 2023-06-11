@@ -41,13 +41,14 @@ option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model 
 import requests
 import streamlit as st
 
-url = 'http://globalmetals.xignite.com/xGlobalMetals.json/ListMetals?&_token=USER_TOKEN'
+url = 'http://globalmetals.xignite.com/xGlobalMetals.json/ListMetals?&_token=5B8CE2B9AE734D8F960DA268FAEB2AC5'
 
 # Initiate API request
 response = requests.get(url)
 
-# Display the response in Streamlit
-st.write(response)
+# Display the response in HTML format
+st.markdown(response.text, unsafe_allow_html=True)
+
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
