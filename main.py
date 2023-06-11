@@ -118,8 +118,6 @@ st.markdown("""
 
 import streamlit as st
 
-option = st.selectbox("Select a dashboard below...", ('Main Page','News','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
-
 if option == 'Main Page':
     st.title('Welcome to Trade Cipher!')
 
