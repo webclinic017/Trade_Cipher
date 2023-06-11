@@ -38,17 +38,27 @@ st.markdown("""
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
-import requests
 import streamlit as st
+import requests
 
-url = 'http://globalmetals.xignite.com/xGlobalMetals.json/ListMetals?&_token=5B8CE2B9AE734D8F960DA268FAEB2AC5'
+url = "https://nasdaq-stock-pricing.p.rapidapi.com/Stock/GetPrice/AAPL"
 
-# Initiate API request
-response = requests.get(url)
+querystring = {"symbol": "AAPL"}
 
-# Display the response in HTML format
-st.markdown(response.text, unsafe_allow_html=True)
+headers = {
+    "X-RapidAPI-Key": "d29531ae60msh09b292159b1d570p1db262jsnd2039bec5d98",
+    "X-RapidAPI-Host": "nasdaq-stock-pricing.p.rapidapi.com"
+}
 
+response = requests.get(url, headers=headers, params=querystring)
+data = response.json()
+
+# Display the results in an HTML table
+st.write("<h2>Stock Price Information</h2>", unsafe_allow_html=True)
+st.write("<table>")
+st.write("<tr><th>Symbol</th><th>Company</th><th>Price</th><th>Currency</th></tr>")
+st.write(f"<tr><td>{data['symbol']}</td><td>{data['company']}</td><td>{data['price']}</td><td>{data['currency']}</td></tr>")
+st.write("</table>", unsafe_allow_html=True)
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
