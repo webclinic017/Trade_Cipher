@@ -4,8 +4,6 @@ import streamlit as st
 import streamlit as st
 import requests
 
-if option == 'News':
-    
 st.header("Business News")
 
 # set the API endpoint and parameters
