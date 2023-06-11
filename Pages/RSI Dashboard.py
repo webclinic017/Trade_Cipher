@@ -1,3 +1,8 @@
+ # Import libraries
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -8,7 +13,6 @@ from urllib.request import urlopen
 import matplotlib
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import pandas.data as web
 import pylab
 from mplfinance.original_flavor import candlestick_ohlc
 from pandas.core.common import flatten
@@ -20,6 +24,46 @@ from ta.utils import dropna
 from ta.trend import MACD
 from ta.momentum import RSIIndicator
 from ta.volatility import BollingerBands
+
+import yfinance as yf
+import datetime
+import streamlit as st
+import ta
+
+# Define the Streamlit app
+st.sidebar.title("Stock RSI Dashboard")
+
+symbol = st.sidebar.text_input("Enter stock symbol (e.g. AAPL for Apple):", "AAPL")
+start_date = st.sidebar.date_input("Start date:", value=datetime.date(2015, 1, 1))
+end_date = st.sidebar.date_input("End date:", value=datetime.date.today())
+rsi_period = st.sidebar.slider("RSI period:", min_value=1, max_value=50, value=14)
+
+# Retrieve the stock data from the yfinance API
+stock_data = yf.download(symbol, start=start_date, end=end_date)
+
+# Calculate the RSI
+rsi_indicator = ta.momentum.RSIIndicator(stock_data["Close"], window=rsi_period)
+rsi = rsi_indicator.rsi()
+
+# Display the results
+st.title("Stock RSI Dashboard")
+
+st.write(f"## Stock symbol: {symbol}")
+st.write(f"### Date range: {start_date} to {end_date}")
+st.write(f"### RSI period: {rsi_period} days")
+
+st.line_chart(stock_data["Close"])
+st.line_chart(rsi)
+
+# Display the results
+st.title("Stock RSI Dashboard")
+
+st.write(f"## Stock symbol: {symbol}")
+st.write(f"### Date range: {start_date} to {end_date}")
+st.write(f"### RSI period: {rsi_period} days")
+
+st.line_chart(stock_data["Close"])
+st.line_chart(rsi)
 
 ###########
 # sidebar #
@@ -34,20 +78,3 @@ if start_date < end_date:
     st.sidebar.success('Start date: `%s`\n\nEnd date:`%s`' % (start_date, end_date))
 else:
     st.sidebar.error('Error: End date must fall after start date.')
-
-##############
-# Stock data #
-##############
-
-# Download data
-df = yf.download(option,start= start_date,end= end_date, progress=False)
-
-# Bollinger Bands
-indicator_bb = BollingerBands(df['Close'])
-bb = df
-bb['bb_h'] = indicator_bb.bollinger_hband()
-bb['bb_l'] = indicator_bb.bollinger_lband()
-bb = bb[['Close','bb_h','bb_l']]
-
-# Moving Average Convergence Divergence
-macd = MACD(df['Close']).macd()
