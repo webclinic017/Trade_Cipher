@@ -43,7 +43,7 @@ selected_page = st.selectbox("Select a Trade Cipher Feature", page_files)
 
 # Execute the selected page
 if selected_page:
-exec(open(f"Pages/{selected_page}").read())
+    exec(open(f"Pages/{selected_page}").read())
 
 
 st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
