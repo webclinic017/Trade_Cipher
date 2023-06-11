@@ -118,7 +118,6 @@ st.markdown("""
 
 import streamlit as st
 
-if option == 'Main Page':
     st.title('Welcome to Trade Cipher!')
 
     from PIL import Image
