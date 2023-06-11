@@ -264,10 +264,10 @@ from ta.trend import MACD
 from ta.momentum import RSIIndicator
 from ta.volatility import BollingerBands
 
-import streamlit as st
 import yfinance as yf
-import ta
 import datetime
+import streamlit as st
+import ta
 
 # Define the Streamlit app
 st.sidebar.title("Stock RSI Dashboard")
@@ -283,6 +283,16 @@ stock_data = yf.download(symbol, start=start_date, end=end_date)
 # Calculate the RSI
 rsi_indicator = ta.momentum.RSIIndicator(stock_data["Close"], window=rsi_period)
 rsi = rsi_indicator.rsi()
+
+# Display the results
+st.title("Stock RSI Dashboard")
+
+st.write(f"## Stock symbol: {symbol}")
+st.write(f"### Date range: {start_date} to {end_date}")
+st.write(f"### RSI period: {rsi_period} days")
+
+st.line_chart(stock_data["Close"])
+st.line_chart(rsi)
 
 # Display the results
 st.title("Stock RSI Dashboard")
