@@ -15,6 +15,7 @@ import plotly.graph_objects as go
 import js2py
 from django.db import models
 
+import os
 import streamlit as st
 
 col1, col2, col3 = st.columns(3)
@@ -30,21 +31,18 @@ with col3:
     
 st.markdown("<h1 style='text-align: center;'>BYOB is here with Trade Cipher! Bring Your Own Broker is the future!</h1>", unsafe_allow_html=True)
 
-st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>" , unsafe_allow_html = True)
-
-import os
+st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>", unsafe_allow_html=True)
 
 # List available page files
 page_files = os.listdir("Pages")
 page_files = [file for file in page_files if file.endswith(".py")]
 
-# Add a menu item to select a page
-selected_page = st.selectbox("Select a Trade Cipher Feature", page_files)
+# Add a menu item to select pages
+selected_pages = st.multiselect("Select Trade Cipher Features", page_files)
 
-# Execute the selected page
-if selected_page:
+# Execute the selected pages
+for selected_page in selected_pages:
     exec(open(f"Pages/{selected_page}").read())
-
 
 st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
 
@@ -52,10 +50,7 @@ st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
 
-
 st.sidebar.header("Trade Cipher Tools")
-
-st.sidebar.header("Stock and Crypto Watchlist")
 
 import streamlit as st
 import plotly.graph_objects as go
