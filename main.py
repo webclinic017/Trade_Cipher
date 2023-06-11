@@ -38,23 +38,21 @@ st.markdown("""
 
 option = st.sidebar.selectbox("Which Dashboard?", ('Main Page', 'Trade', 'Model Performance Analysis', 'TC Social', 'Charts','Twitter DB','RSI Dashboard'), 3)
 
-import streamlit as st
-import requests
+import http.client
 
-url = "https://nasdaq-stock-pricing.p.rapidapi.com/Stock/GetPrice/AAPL"
-
-querystring = {"symbol": "AAPL"}
+conn = http.client.HTTPSConnection("validate-vat-number.p.rapidapi.com")
 
 headers = {
-    "X-RapidAPI-Key": "d29531ae60msh09b292159b1d570p1db262jsnd2039bec5d98",
-    "X-RapidAPI-Host": "nasdaq-stock-pricing.p.rapidapi.com"
+    'X-RapidAPI-Key': "d29531ae60msh09b292159b1d570p1db262jsnd2039bec5d98",
+    'X-RapidAPI-Host': "validate-vat-number.p.rapidapi.com"
 }
 
-response = requests.get(url, headers=headers, params=querystring)
-data = response.json()
+conn.request("GET", "/?vat=DE344422438", headers=headers)
 
-# Print the data dictionary for debugging
-st.write(data)
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
