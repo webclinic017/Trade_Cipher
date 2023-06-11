@@ -27,8 +27,24 @@ with col2:
 
 with col3:
     st.write(' ')
+    
+st.markdown("<h1 style='text-align: center;'>BYOB is here with Trade Cipher! Bring Your Own Broker is the future!</h1>", unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>" , unsafe_allow_html = True)
+
+import os
+
+# List available page files
+page_files = os.listdir("Pages")
+page_files = [file for file in page_files if file.endswith(".py")]
+
+# Add a menu item to select a page
+selected_page = st.selectbox("Select a Trade Cipher Feature", page_files)
+
+# Execute the selected page
+if selected_page:
+exec(open(f"Pages/{selected_page}").read())
+
 
 st.title('BYOB is here with Trade Cipher! Bring Your Own Broker is the future!')
 
