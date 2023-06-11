@@ -44,7 +44,7 @@ import requests
 url = 'https://crypto.xignite.com/xCrypto.json/ListTopCoins?Type=Volume,MarketCapitalization&Count=10&_token=5B8CE2B9AE734D8F960DA268FAEB2AC5'
 
 # Initiate API request
-response = request.get(url)
+response = requests.get(url)
 print(response)
 
 st.markdown("""
