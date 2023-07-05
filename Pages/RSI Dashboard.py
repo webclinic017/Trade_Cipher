@@ -82,9 +82,9 @@ try:
 
     # Description of RSI
     st.markdown("## What is the Relative Strength Index (RSI)?")
-    st.markdown("The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements. "
-                "It oscillates between 0 and 100 and is commonly used to identify overbought or oversold conditions in a stock. "
-                "RSI values above 70 are generally considered overbought, while values below 30 are considered oversold.")
+    st.markdown("The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements.```
+    "It oscillates between 0 and 100 and is commonly used to identify overbought or oversold conditions in a stock. "
+    "RSI values above 70 are generally considered overbought, while values below 30 are considered oversold.")
 
     # How to search for RSI information
     st.markdown("## How to Search for a Company's RSI Information")
