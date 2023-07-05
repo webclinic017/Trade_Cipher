@@ -1,6 +1,13 @@
 import requests
 import streamlit
 
+if option == 'Crypto':
+    # Centered title
+    st.markdown("<h1 style='text-align: center;'>Crypto Cipher</h1>", unsafe_allow_html=True)
+
+    # Add divider line
+    st.markdown("---")
+
 url = "https://coinranking1.p.rapidapi.com/coins"
 
 querystring = {"referenceCurrencyUuid":"yhjMzLPhuIDl","timePeriod":"24h","tiers[0]":"1","orderBy":"marketCap","orderDirection":"desc","limit":"50","offset":"0"}
