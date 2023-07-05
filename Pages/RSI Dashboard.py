@@ -69,16 +69,13 @@ if option == 'RSI Dashboard':
         chart_type = st.sidebar.selectbox("Select chart type", ("Line", "Bar", "Area", "Candlestick"))
 
         # Display the results
-        st.subheader(f"Stock symbol: {symbol}")
+        st.subheader("Stock symbol: {symbol}")
         st.write(f"Date range: {start_date} to {end_date}")
         st.write(f"RSI period: {rsi_period} days")
 
         # Description of RSI
         st.markdown("## What is the Relative Strength Index (RSI)?")
         st.markdown("The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements.")
-        stapologize for the previous code error. Here's the continuation of the updated code:
-
-```python
         st.markdown("It oscillates between 0 and 100 and is commonly used to identify overbought or oversold conditions in a stock. "
                     "RSI values above 70 are generally considered overbought, while values below 30 are considered oversold.")
 
