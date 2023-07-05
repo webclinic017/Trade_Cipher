@@ -42,7 +42,7 @@ selected_pages = st.multiselect("Select Trade Cipher Features", page_files)
 
 # Execute the selected pages
 for selected_page in selected_pages:
-    exec(open(f"Pages/{selected_page}").read())
+    exec(open("Pages/{selected_page}").read())
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
@@ -62,7 +62,7 @@ watchlist = []
 # Define a function to add symbols to the watchlist
 def add_to_watchlist(symbol):
     watchlist.append(symbol.upper())
-    return f"{symbol.upper()} added to watchlist."
+    return "{symbol.upper()} added to watchlist."
 
 # Use a form to collect input from users
 with st.form("Add Symbol"):
