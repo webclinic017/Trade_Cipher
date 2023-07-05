@@ -40,31 +40,6 @@ with col3:
 
 st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>" , unsafe_allow_html = True)
 
-import streamlit as st
-
-# Create an empty list to store the watchlist
-watchlist = []
-
-def add_to_watchlist(symbol):
-    watchlist.append(symbol)
-    return f"{symbol} added to watchlist."
-
-st.title("Stock and Crypto Watchlist")
-
-# Create a form to add new symbols to the watchlist
-new_symbol = st.text_input("Enter a stock or crypto symbol to add to your watchlist:")
-if new_symbol:
-    result = add_to_watchlist(new_symbol)
-    st.success(result)
-
-# Display the current watchlist
-if watchlist:
-    st.header("My Watchlist")
-    st.write(watchlist)
-else:
-    st.warning("Your watchlist is empty.")
-
-
 option = st.selectbox("Select a dashboard below...", ('Main Page','Trade', 'Model Performance Analysis', 'TC Social', 'Charts', 'Twitter DB', 'RSI Dashboard'))
 
 if option == 'Main Page':
@@ -274,29 +249,6 @@ if option == 'Trade':
 
     symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
 
-
-
-if option == 'Twitter DB':
-    st.subheader("Twitter Trader Info Dashboard")
-    for username in config.TWITTER_USERNAMES :
-        api = tweepy.API(auth)
-        user = api.get_user(screen_name = 'dak')
-
-        print(user.id)
-
-        st.subheader(username)
-        st.image(user.profile_image_url)
-
-        for tweet in tweets :
-            if '$' in tweet.text :
-                words = tweet.text.split(' ')
-                for word in words :
-                    if word.startswith('$') and word[1 :].isalpha() :
-                        symbol = word[1 :]
-                        st.write(symbol)
-                        st.write(tweet.text)
-                        st.image(f"https://finviz.com/chart.ashx?t={symbol}")
-
     if option == 'chart' :
         symbol = st.sidebar.text_input("Symbol" , value = 'MSFT' , max_chars = None , key = None , type = 'default')
 
@@ -323,4 +275,90 @@ if option == 'Twitter DB':
         st.write(data)
 
     symbol = st.sidebar.text_input("Ticker Symbol" , value = 'LTZBLD' , max_chars = 6)
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+import datetime
+import random
+import time
+from urllib.request import urlopen
+import matplotlib
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import pylab
+from mplfinance.original_flavor import candlestick_ohlc
+from pandas.core.common import flatten
+from tabulate import tabulate
+import yfinance as yf # https://pypi.org/project/yfinance/
+import ta as ta
+from ta import add_all_ta_features
+from ta.utils import dropna
+from ta.trend import MACD
+from ta.momentum import RSIIndicator
+from ta.volatility import BollingerBands
+
+###########
+# sidebar #
+###########
+option = st.sidebar.selectbox('Select one symbol', ( 'AAPL', 'MSFT',"SPY",'WMT'))
+import datetime
+today = datetime.date.today()
+before = today - datetime.timedelta(days=700)
+start_date = st.sidebar.date_input('Start date', before)
+end_date = st.sidebar.date_input('End date', today)
+if start_date < end_date:
+    st.sidebar.success('Start date: `%s`\n\nEnd date:`%s`' % (start_date, end_date))
+else:
+    st.sidebar.error('Error: End date must fall after start date.')
+
+##############
+# Stock data #
+##############
+
+# Download data
+df = yf.download(option,start= start_date,end= end_date, progress=False)
+
+# Bollinger Bands
+indicator_bb = BollingerBands(df['Close'])
+bb = df
+bb['bb_h'] = indicator_bb.bollinger_hband()
+bb['bb_l'] = indicator_bb.bollinger_lband()
+bb = bb[['Close','bb_h','bb_l']]
+
+# Moving Average Convergence Divergence
+macd = MACD(df['Close']).macd()
+
+# Resistence Strength Indicator
+rsi = RSIIndicator(df['Close']).rsi()
+
+###################
+# Set up main app #
+###################
+
+# Plot the prices and the bolinger bands
+st.write('Stock Bollinger Bands')
+st.line_chart(bb)
+
+progress_bar = st.progress(0)
+
+# Plot MACD
+st.write('Stock Moving Average Convergence Divergence (MACD)')
+st.area_chart(macd)
+
+# Plot RSI
+st.write('Stock RSI')
+st.line_chart(rsi)
+
+# Data of recent days
+st.write('Recent data')
+st.dataframe(df.tail(10))
+
+def to_excel(df):
+    output = df.to_excel
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, sheet_name='Sheet1')
+    writer.save()
+    processed_data = output.getvalue()
+    return processed_data
 
