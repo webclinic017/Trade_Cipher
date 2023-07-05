@@ -1,4 +1,5 @@
 import requests
+import streamlit
 
 url = "https://coinranking1.p.rapidapi.com/coins"
 
@@ -12,3 +13,19 @@ headers = {
 response = requests.get(url, headers=headers, params=querystring)
 
 print(response.json())
+
+import http.client
+
+conn = http.client.HTTPSConnection("alpha-vantage.p.rapidapi.com")
+
+headers = {
+    'X-RapidAPI-Key': "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
+    'X-RapidAPI-Host': "alpha-vantage.p.rapidapi.com"
+}
+
+conn.request("GET", "/query?interval=5min&function=TIME_SERIES_INTRADAY&symbol=MSFT&datatype=json&output_size=compact", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
