@@ -138,7 +138,7 @@ try:
         st.pyplot(fig)
 
 except Exception as e:
-    st.error("Error: Unable to retrieve stock data. Please check the entered symbol and date range.")
+    st.error("Error: Unable to retrieve stock data. Please enter a valid symbol or check the entered symbol and date range.")
 
 # Add divider line
 st.markdown("---")
