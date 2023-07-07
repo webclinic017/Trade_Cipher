@@ -51,6 +51,9 @@ st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
 
+# Add divider line
+st.markdown("---")
+
 st.sidebar.header("Trade Cipher Tools")
 
 import streamlit as st
