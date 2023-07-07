@@ -31,6 +31,9 @@ with col3:
     
 #st.markdown("<h1 style='text-align: center;'>BYOB is here with Trade Cipher! Bring Your Own Broker is the future!</h1>", unsafe_allow_html=True)
 
+# Add divider line
+st.markdown("---")
+
 st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>", unsafe_allow_html=True)
 
 # List available page files
@@ -116,6 +119,9 @@ st.markdown(
 st.sidebar.text("Watch Bloomberg Video 24/7")
 
 st.sidebar.video('https://www.youtube.com/watch?v=DxmDPrfinXY')
+
+# Add divider line
+st.markdown("---")
 
 st.sidebar.text("Watch CNBC Live 24/7")
 
