@@ -71,7 +71,7 @@ st.markdown("---")
 st.sidebar.markdown("<h3 style='text-align: center;'>Stock Selection</h3>", unsafe_allow_html=True)
 symbol = st.sidebar.text_input("Enter a symbol (e.g., AAPL, MSFT, SPY, WMT)")
 today = datetime.date.today()
-before = today - datetime.timedelta(days=700)
+before = today - datetime.timedelta(days=30)
 start_date = st.sidebar.date_input("Start date", before)
 end_date = st.sidebar.date_input("End date", today)
 
