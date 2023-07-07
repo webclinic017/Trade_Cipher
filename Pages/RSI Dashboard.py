@@ -51,18 +51,18 @@ st.markdown("<h1 style='text-align: center;'>Stock RSI Dashboard</h1>", unsafe_a
 st.markdown("---")
 
 # Description of RSI
-    st.markdown("## What is the Relative Strength Index (RSI)?")
-    st.markdown("The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements. "
-                "It oscillates between 0 and 100 and is commonly used to identify overbought or oversold conditions in a stock. "
-                "RSI values above 70 are generally considered overbought, while values below 30 are considered oversold.")
+st.markdown("## What is the Relative Strength Index (RSI)?")
+st.markdown("The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements. "
+            "It oscillates between 0 and 100 and is commonly used to identify overbought or oversold conditions in a stock. "
+            "RSI values above 70 are generally considered overbought, while values below 30 are considered oversold.")
 
-    # How to search for RSI information
-    st.markdown("## How to Search for a Company's RSI Information")
-    st.markdown("1. Enter a stock symbol in the text input field on the left sidebar.")
-    st.markdown("2. Choose the start and end dates for the data range.")
-    st.markdown("3. Adjust the RSI period using the slider on the left sidebar.")
-    st.markdown("4. Select the desired chart type from the dropdown menu on the left sidebar.")
-    st.markdown("5. The stock's price chart and RSI chart will be displayed in the main section of the app based on your selections.")
+# How to search for RSI information
+st.markdown("## How to Search for a Company's RSI Information")
+st.markdown("1. Enter a stock symbol in the text input field on the left sidebar.")
+st.markdown("2. Choose the start and end dates for the data range.")
+st.markdown("3. Adjust the RSI period using the slider on the left sidebar.")
+st.markdown("4. Select the desired chart type from the dropdown menu on the left sidebar.")
+st.markdown("5. The stock's price chart and RSI chart will be displayed in the main section of the app based on your selections.")
 
 # Add divider line
 st.markdown("---")
