@@ -18,20 +18,20 @@ from django.db import models
 
 st.subheader("Twitter Trader Info Dashboard")
 for username in config.TWITTER_USERNAMES :
-    api = tweepy.API(auth)
-    user = api.get_user(screen_name = 'dak')
+api = tweepy.API(auth)
+user = api.get_user(screen_name = 'dak')
 
-    print(user.id)
+print(user.id)
 
-    st.subheader(username)
-    st.image(user.profile_image_url)
+st.subheader(username)
+st.image(user.profile_image_url)
 
-    for tweet in tweets :
-        if '$' in tweet.text :
-            words = tweet.text.split(' ')
-            for word in words :
-                if word.startswith('$') and word[1 :].isalpha() :
-                    symbol = word[1 :]
-                    st.write(symbol)
-                    st.write(tweet.text)
-                    st.image(f"https://finviz.com/chart.ashx?t={symbol}")
+for tweet in tweets :
+    if '$' in tweet.text :
+        words = tweet.text.split(' ')
+        for word in words :
+            if word.startswith('$') and word[1 :].isalpha() :
+                symbol = word[1 :]
+                st.write(symbol)
+                st.write(tweet.text)
+                st.image(f"https://finviz.com/chart.ashx?t={symbol}")
