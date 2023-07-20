@@ -18,7 +18,6 @@ import mplfinance as mpf
 import plotly.graph_objects as go
 import js2py
 from django.db import models
-import cryptowatch as cw
 
 # Set title
 st.title('Streaming Stock Market Charts')
