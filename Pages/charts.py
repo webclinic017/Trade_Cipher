@@ -41,9 +41,6 @@ def create_plot():
 if st.checkbox('Show streaming plot'):
     create_plot()
 
-# Get stock symbol from user
-ticker = st.text_input('Enter a stock symbol:', '')
-
 # Create empty figure
 fig = plt.figure()
 
@@ -55,7 +52,3 @@ def create_plot():
     df = tickerData.history(period="1d")
     plt.plot(df['Close'])
     st.pyplot()
-
-# Run streaming plot
-if st.checkbox('Show streaming plot'):
-    create_plot()
