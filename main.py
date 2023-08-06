@@ -104,6 +104,8 @@ if watchlist:
 else:
     st.warning("Your watchlist is empty.")
 
+
+
 # Add custom CSS to style the app
 st.markdown(
     """
