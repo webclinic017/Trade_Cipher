@@ -16,7 +16,7 @@ def get_wall_street_journal_data():
     return response.json()["articles"]
 
 # Create a dropdown to select the tab
-selected_tab = st.selectbox("Select a tab:", ["Current Business News", "Wall Street Journal Articles"])
+selected_tab = st.selectbox("Select a news source:", ["Current Business News", "Wall Street Journal Articles"])
 
 if selected_tab == "Current Business News":  # Fetch and display data for Business News tab
     st.header("Current Business News")
