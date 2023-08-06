@@ -16,7 +16,7 @@ def get_wall_street_journal_data():
     return response.json()["articles"]
 
 # Create a dropdown to select the tab
-selected_tab = st.selectbox("Select a news source:", ["Current Business News", "Wall Street Journal Articles"])
+selected_tab = st.selectbox("Select a tab:", ["Current Business News", "Wall Street Journal Articles"])
 
 if selected_tab == "Current Business News":  # Fetch and display data for Business News tab
     st.header("Current Business News")
@@ -38,6 +38,7 @@ if selected_tab == "Current Business News":  # Fetch and display data for Busine
         st.write("## " + article["title"])
         st.write(article["description"])
         st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
+        st.write(f"URL: {article['url']}")  # Display the source URL
         st.write("---")
 
 if selected_tab == "Wall Street Journal Articles":  # Fetch and display data for Wall Street Journal tab
@@ -60,10 +61,5 @@ if selected_tab == "Wall Street Journal Articles":  # Fetch and display data for
         st.write("## " + article["title"])
         st.write(article["description"])
         st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
+        st.write(f"URL: {article['url']}")  # Display the source URL
         st.write("---")
-        st.write('url')
-
-        # Set the font family and size using HTML tags
-        html = f"<div style='font-family: Arial; font-size: 12pt'></div>"
-        # Write the HTML to the Streamlit app
-        st.write(html, unsafe_allow_html=True)
