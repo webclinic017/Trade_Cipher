@@ -47,7 +47,7 @@ with tab2:
 
 # set the API endpoint and parameters
 url = "https://newsapi.org/v2/everything?domains=wsj.com"
-params = {"country": "us", "apiKey": "e05f54f819fb43b4b67385072ad1db10"}
+params = {"apiKey": "e05f54f819fb43b4b67385072ad1db10"}
 
 # make the API request and retrieve the data
 response = requests.get(url, params=params)
@@ -63,8 +63,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write("Here are the top articels from WSJ:")
-for article in data["articles"]:
+st.write("Here are the top articles from WSJ:")
+for article in data["article"]:
     st.write("## " + article["title"])
     st.write(article["description"])
     st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
