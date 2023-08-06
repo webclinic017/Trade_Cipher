@@ -7,11 +7,11 @@ tab1, tab2 = st.tabs(["Current Business News", "Wall Street Journal Articles"])
 if tab1:  # Only fetch and display data if tab1 is selected
     st.header("Current Business News")
 
-    # Set the API endpoint and parameters
+    # Set the API endpoint and parameters for Business News
     url = "https://newsapi.org/v2/top-headlines?country=us&category=business"
     params = {"country": "us", "apiKey": "e05f54f819fb43b4b67385072ad1db10"}
 
-    # Make the API request and retrieve the data
+    # Make the API request and retrieve the data for Business News
     response = requests.get(url, params=params)
     data = response.json()
 
@@ -39,11 +39,11 @@ if tab1:  # Only fetch and display data if tab1 is selected
 if tab2:  # Only fetch and display data if tab2 is selected
     st.header("Wall Street Journal Articles")
 
-    # Set the API endpoint and parameters
+    # Set the API endpoint and parameters for Wall Street Journal Articles
     url = "https://newsapi.org/v2/everything?domains=wsj.com"
     params = {"apiKey": "e05f54f819fb43b4b67385072ad1db10"}
 
-    # Make the API request and retrieve the data
+    # Make the API request and retrieve the data for Wall Street Journal Articles
     response = requests.get(url, params=params)
     data = response.json()
 
@@ -62,8 +62,10 @@ if tab2:  # Only fetch and display data if tab2 is selected
         st.write(article["description"])
         st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
         st.write("---")
+        st.write('url')
 
         # Set the font family and size using HTML tags
         html = f"<div style='font-family: Arial; font-size: 12pt'></div>"
         # Write the HTML to the Streamlit app
         st.write(html, unsafe_allow_html=True)
+
