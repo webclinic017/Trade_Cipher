@@ -63,7 +63,6 @@ if tab2:  # Only fetch and display data if tab2 is selected
         st.write(article["description"])
         st.write(f"Source: {article['source']['name']}  Published: {article['publishedAt']}")
         st.write("---")
-        st.write('url')
 
         # Set the font family and size using HTML tags
         html = f"<div style='font-family: Arial; font-size: 12pt'></div>"
