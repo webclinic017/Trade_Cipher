@@ -2,6 +2,7 @@ import streamlit as st
 import time
 import requests
 import pandas as pd
+import json
 
 def get_api_data():
     url = "https://seeking-alpha-finance.p.rapidapi.com/v1/screeners/tickers"
@@ -22,17 +23,15 @@ def main():
     data = get_api_data()
 
     if data:
-        # Convert data to a pandas DataFrame
-        df = pd.DataFrame(data)
+        # Convert data to a JSON string and prettify it
+        json_string = json.dumps(data, indent=4)
 
-        # Convert DataFrame to HTML table
-        table_html = df.to_html(index=False, escape=False)
-
-        # Display the HTML table using components.html()
+        # Display the JSON response using st.code() to maintain formatting
         st.write("API Response:")
-        st.components.v1.html(table_html, height=500)
+        st.code(json_string, language="json")
     else:
         st.write("Failed to fetch data from the API. Please check your API key and connection.")
 
 if __name__ == "__main__":
     main()
+()
