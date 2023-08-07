@@ -4,6 +4,22 @@ import requests
 import pandas as pd
 import json
 
+import http.client
+
+conn = http.client.HTTPSConnection("seeking-alpha-finance.p.rapidapi.com")
+
+headers = {
+    'X-RapidAPI-Key': "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
+    'X-RapidAPI-Host': "seeking-alpha-finance.p.rapidapi.com"
+}
+
+conn.request("GET", "/v1/screeners/tickers?screener_id=96793299", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+
 def get_api_data():
     url = "https://seeking-alpha-finance.p.rapidapi.com/v1/screeners/tickers"
     querystring = {"screener_id": "96793299"}
