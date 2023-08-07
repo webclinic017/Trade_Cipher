@@ -12,26 +12,23 @@ for percent_complete in range(100):
 
 progress_text.markdown("**The environment is ready!**")
 
-import requests
-import streamlit
-
 import streamlit as st
 import requests
 
-def fetch_api_data():
+def get_api_data():
     url = "https://seeking-alpha-finance.p.rapidapi.com/v1/screeners/tickers"
-    querystring = {"screener_id":"96793299"}
+    querystring = {"screener_id": "96793299"}
     headers = {
         "X-RapidAPI-Key": "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
-        "X-RapidAPI-Host": "seeking-alpha-finance.p.rapidapi.com"
+        "X-RapidAPI-Host": "seeking-alpha-finance.p.rapidapi.com",
     }
 
     response = requests.get(url, headers=headers, params=querystring)
     return response.json()
 
 def main():
-    st.title("Seeking Alpha Screeners")
-    st.subheader("Stock/Crypto Screeners")
+    st.title("Seeking Alpha API Data")
+    st.write("Fetching data from the API...")
 
     # Get the data from the API
     data = get_api_data()
