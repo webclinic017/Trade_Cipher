@@ -25,19 +25,12 @@ def main():
         # Convert data to a pandas DataFrame
         df = pd.DataFrame(data)
 
-        # Display the DataFrame as an HTML table manually
+        # Convert DataFrame to HTML table
+        table_html = df.to_html(index=False, escape=False)
+
+        # Display the HTML table using components.html()
         st.write("API Response:")
-        st.write("<table border='1' style='border-collapse: collapse;'>")
-        st.write("<tr>")
-        for col in df.columns:
-            st.write(f"<th>{col}</th>")
-        st.write("</tr>")
-        for _, row in df.iterrows():
-            st.write("<tr>")
-            for value in row:
-                st.write(f"<td>{value}</td>")
-            st.write("</tr>")
-        st.write("</table>", unsafe_allow_html=True)
+        st.components.v1.html(table_html, height=500)
     else:
         st.write("Failed to fetch data from the API. Please check your API key and connection.")
 
