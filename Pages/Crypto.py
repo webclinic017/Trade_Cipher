@@ -1,18 +1,5 @@
 import streamlit as st
 import time
-
-progress_text = st.empty()
-my_bar = st.progress(0)
-
-progress_text.markdown("**Just a moment while we prepare the environment!**")
-
-for percent_complete in range(100):
-    time.sleep(0.1)
-    my_bar.progress(percent_complete + 1)
-
-progress_text.markdown("**The environment is ready!**")
-
-import streamlit as st
 import requests
 
 def get_api_data():
