@@ -27,11 +27,22 @@ def main():
         json_string = json.dumps(data, indent=4)
 
         # Display the JSON response using st.code() to maintain formatting
-        st.write("API Response:")
+        st.write("API Response (Raw JSON):")
         st.code(json_string, language="json")
+
+        # Convert data to a pandas DataFrame
+        df = pd.DataFrame(data)
+
+        # Display the DataFrame with st.dataframe()
+        st.write("API Response (Parsed Data):")
+        st.dataframe(df)
+
+        # Display the DataFrame as an HTML table with custom styling
+        st.write("API Response (Formatted Table):")
+        st.table(df.style.set_table_attributes("style='display:inline-block'").set_caption("API Data"))
+
     else:
         st.write("Failed to fetch data from the API. Please check your API key and connection.")
 
 if __name__ == "__main__":
     main()
-()
