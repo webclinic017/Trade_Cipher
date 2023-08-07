@@ -19,10 +19,10 @@ import streamlit as st
 import requests
 
 def fetch_api_data():
-    url = "https://seeking-alpha-finance.p.rapidapi.com/v1/search/advanced"
-    querystring = {"query": "bill", "search_advanced_type": "people"}
+    url = "https://seeking-alpha-finance.p.rapidapi.com/v1/screeners/tickers"
+    querystring = {"screener_id":"96793299"}
     headers = {
-        "X-RapidAPI-Key": "d29531ae60msh09b292159b1d570p1db262jsnd2039bec5d98",
+        "X-RapidAPI-Key": "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
         "X-RapidAPI-Host": "seeking-alpha-finance.p.rapidapi.com"
     }
 
@@ -30,24 +30,20 @@ def fetch_api_data():
     return response.json()
 
 def main():
-    st.title("Seeking Alpha API Streamlit App")
-    st.subheader("Search Results for 'bill' in People")
+    st.title("Seeking Alpha Screeners")
+    st.subheader("Stock/Crypto Screeners")
 
-    # Fetch API data
-    data = fetch_api_data()
+    # Get the data from the API
+    data = get_api_data()
 
-    # Display data on the front-end
-    if "data" in data:
-        for result in data["data"]:
-            st.write(f"Name: {result['attributes']['name']}")
-            st.write(f"Role: {result['attributes']['role']}")
-            st.write("------")
+    if data:
+        st.write("API Response:")
+        st.json(data)
     else:
-        st.write("No results found.")
+        st.write("Failed to fetch data from the API. Please check your API key and connection.")
 
 if __name__ == "__main__":
     main()
-
 
 url = "https://coinranking1.p.rapidapi.com/coins"
 
