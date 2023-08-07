@@ -34,9 +34,6 @@ def main():
     else:
         st.write("Failed to fetch data from the API. Please check your API key and connection.")
 
-if __name__ == "__main__":
-    main()
-
 url = "https://coinranking1.p.rapidapi.com/coins"
 
 querystring = {"referenceCurrencyUuid":"yhjMzLPhuIDl","timePeriod":"24h","tiers[0]":"1","orderBy":"marketCap","orderDirection":"desc","limit":"50","offset":"0"}
