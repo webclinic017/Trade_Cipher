@@ -25,9 +25,9 @@ def main():
         # Convert data to a pandas DataFrame
         df = pd.DataFrame(data)
 
-        # Display the DataFrame as an HTML table
+        # Display the DataFrame as an HTML table using styler
         st.write("API Response:")
-        st.write(df.to_html(index=False, escape=False), unsafe_allow_html=True)
+        st.write(df.style.render(), unsafe_allow_html=True)
     else:
         st.write("Failed to fetch data from the API. Please check your API key and connection.")
 
