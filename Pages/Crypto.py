@@ -62,3 +62,6 @@ res = conn.getresponse()
 data = res.read()
 
 print(data.decode("utf-8"))
+
+if __name__ == "__main__":
+    main()
