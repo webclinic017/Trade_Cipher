@@ -52,3 +52,18 @@ def create_plot():
     df = tickerData.history(period="1d")
     plt.plot(df['Close'])
     st.pyplot()
+
+import requests
+
+url = "https://seeking-alpha.p.rapidapi.com/market/get-realtime-quotes"
+
+querystring = {"sa_ids":"612888,16123"}
+
+headers = {
+	"X-RapidAPI-Key": "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
+	"X-RapidAPI-Host": "seeking-alpha.p.rapidapi.com"
+}
+
+response = requests.get(url, headers=headers, params=querystring)
+
+print(response.json())
