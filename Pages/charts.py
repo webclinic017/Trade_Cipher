@@ -74,13 +74,15 @@ data = response.json()
 st.title("Realtime Quotes")
 st.write("API data from Seeking Alpha:")
 
-# Convert data to HTML format
-html_data = "<ul>"
-for quote in data:
-    symbol = quote.get("symbol", "N/A")
-    last_price = quote.get("last_price", "N/A")
-    html_data += f"<li><b>Symbol:</b> {symbol}, <b>Last Price:</b> {last_price}</li>"
-html_data += "</ul>"
+# Check if the data is a list of dictionaries
+if isinstance(data, list):
+    html_data = "<ul>"
+    for quote in data:
+        symbol = quote.get("symbol", "N/A")
+        last_price = quote.get("last_price", "N/A")
+        html_data += f"<li><b>Symbol:</b> {symbol}, <b>Last Price:</b> {last_price}</li>"
+    html_data += "</ul>"
+    st.markdown(html_data, unsafe_allow_html=True)
+else:
+    st.write("Invalid data format")
 
-# Display the HTML data
-st.markdown(html_data, unsafe_allow_html=True)
