@@ -55,15 +55,22 @@ def create_plot():
 
 import requests
 
+import streamlit as st
+import requests
+
+# Set up the API request parameters
 url = "https://seeking-alpha.p.rapidapi.com/market/get-realtime-quotes"
-
-querystring = {"sa_ids":"612888,16123"}
-
+querystring = {"sa_ids": "612888,16123"}
 headers = {
-	"X-RapidAPI-Key": "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
-	"X-RapidAPI-Host": "seeking-alpha.p.rapidapi.com"
+    "X-RapidAPI-Key": "62b008b623mshaf55ca1e208d945p1256acjsn8ca0e82661f6",
+    "X-RapidAPI-Host": "seeking-alpha.p.rapidapi.com",
 }
 
+# Fetch data from the API
 response = requests.get(url, headers=headers, params=querystring)
+data = response.json()
 
-print(response.json())
+# Display the data using Streamlit
+st.title("Realtime Quotes")
+st.write("API data from Seeking Alpha:")
+st.json(data)  # You can use st.write(data) if you prefer a different style of display
