@@ -70,7 +70,17 @@ headers = {
 response = requests.get(url, headers=headers, params=querystring)
 data = response.json()
 
-# Display the data using Streamlit
+# Display the data using Streamlit as HTML
 st.title("Realtime Quotes")
 st.write("API data from Seeking Alpha:")
-st.json(data)  # You can use st.write(data) if you prefer a different style of display
+
+# Convert data to HTML format
+html_data = "<ul>"
+for quote in data:
+    symbol = quote.get("symbol", "N/A")
+    last_price = quote.get("last_price", "N/A")
+    html_data += f"<li><b>Symbol:</b> {symbol}, <b>Last Price:</b> {last_price}</li>"
+html_data += "</ul>"
+
+# Display the HTML data
+st.markdown(html_data, unsafe_allow_html=True)
