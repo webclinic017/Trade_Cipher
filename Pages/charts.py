@@ -20,10 +20,10 @@ import js2py
 from django.db import models
 
 # Set title
-st.title('Streaming Stock Market Charts')
+st.title('Stock and Crypto Charts')
 
 # Get stock symbol from user
-ticker = st.text_input('Enter a stock symbol:', '')
+ticker = st.text_input('Enter a stock/crypto symbol:', '')
 
 # Create empty figure
 fig = plt.figure()
