@@ -1,9 +1,6 @@
-import streamlit as st
-import time
 import requests
+import streamlit as st
 import pandas as pd
-import json
-import http.client
 
 def get_api_data():
     url = "https://seeking-alpha-finance.p.rapidapi.com/v1/screeners/tickers"
@@ -26,6 +23,9 @@ def main():
     if data:
         # Convert data to a pandas DataFrame
         df = pd.DataFrame(data)
+
+        # Set a unique index for the DataFrame
+        df.set_index("Company Name", inplace=True)  # Replace with an actual unique column name
 
         # Display the DataFrame as an HTML table with custom styling
         st.write("API Response (Formatted Table):")
