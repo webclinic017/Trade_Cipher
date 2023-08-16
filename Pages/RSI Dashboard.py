@@ -6,6 +6,8 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 from mplfinance.original_flavor import candlestick_ohlc
 
+st.sidebar.image('Canion3D_original-logos_PNG.png', use_column_width=1)
+
 # Add divider line
 st.markdown("---")
 
