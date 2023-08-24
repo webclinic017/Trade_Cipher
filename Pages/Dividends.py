@@ -51,7 +51,7 @@ def get_jsonparsed_data(url):
 def main():
     st.title("Stock Dividend Calendar")
 
-    url = ("https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from=2020-06-01&to=2020-09-10&apikey=7871663557cbf06ab075c5ba73a7098f")
+    url = ("https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from=2020-01-01&to=2023-12-31&apikey=7871663557cbf06ab075c5ba73a7098f")
     st.write("Fetching data from:", url)
 
     try:
