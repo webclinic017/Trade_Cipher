@@ -57,7 +57,7 @@ def main():
         df = pd.DataFrame(data)
 
         st.write("Dividend Data:")
-        st.table(df)
+        st.dataframe(df.style.highlight_max(axis=0), height=600)
         
         # Convert date column to datetime
         df['date'] = pd.to_datetime(df['date'])
