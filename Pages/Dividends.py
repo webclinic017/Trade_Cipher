@@ -50,7 +50,7 @@ def main():
     st.title("Stock Dividend Calendar")
 
     url = ("https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from=2020-01-01&to=2023-12-31&apikey=7871663557cbf06ab075c5ba73a7098f")
-    st.write("Fetching data from:", url)
+    st.write("Please wait while the Dividend data is loaded")
 
     try:
         data = get_jsonparsed_data(url)
