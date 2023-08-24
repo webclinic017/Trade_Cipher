@@ -35,13 +35,11 @@ st.markdown("<h1 style='text-align: center;'>BYOB is here with Trade Cipher! Bri
 st.markdown("---")
 
 import streamlit as st
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
-
+import pandas as pd
+from urllib.request import urlopen
 import certifi
 import json
+import plotly.express as px
 
 def get_jsonparsed_data(url):
     response = urlopen(url, cafile=certifi.where())
@@ -56,7 +54,19 @@ def main():
 
     try:
         data = get_jsonparsed_data(url)
-        st.json(data)
+        df = pd.DataFrame(data)
+        
+        # Convert date column to datetime
+        df['date'] = pd.to_datetime(df['date'])
+
+        # Create a calendar heatmap using Plotly
+        fig = px.scatter(df, x='date', y='symbol', text='amount', color='amount', 
+                         color_continuous_scale='Viridis', title='Dividend Calendar')
+        fig.update_traces(texttemplate='%{text:.2s}', textposition='top center')
+        fig.update_xaxes(type='category')
+
+        st.plotly_chart(fig)
+        
     except Exception as e:
         st.error("An error occurred: " + str(e))
 
