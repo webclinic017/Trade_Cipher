@@ -56,20 +56,11 @@ def main():
         data = get_jsonparsed_data(url)
         df = pd.DataFrame(data)
 
-        st.write("Dividend Data:")
-        numeric_columns = df.select_dtypes(include=['number']).columns
-        st.dataframe(df.style.highlight_max(axis=0), height=600)
-        
-        # Convert date column to datetime
+                # Convert date column to datetime
         df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
 
-        # Create a calendar heatmap using Plotly
-        fig = px.scatter(df, x='date', y='symbol', text='amount', color='amount', 
-                         color_continuous_scale='Viridis', title='Dividend Calendar')
-        fig.update_traces(texttemplate='%{text:.2s}', textposition='top center')
-        fig.update_xaxes(type='category')
-
-        st.plotly_chart(fig)
+        st.write("Dividend Data:")
+        st.dataframe(df.style.highlight_max(axis=0), height=600)
         
     except Exception as e:
         st.error("An error occurred: " + str(e))
