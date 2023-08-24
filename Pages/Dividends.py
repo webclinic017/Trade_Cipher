@@ -55,6 +55,9 @@ def main():
     try:
         data = get_jsonparsed_data(url)
         df = pd.DataFrame(data)
+
+        st.write("Dividend Data:")
+        st.table(df)
         
         # Convert date column to datetime
         df['date'] = pd.to_datetime(df['date'])
