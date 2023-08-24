@@ -34,31 +34,31 @@ st.markdown("<h1 style='text-align: center;'>BYOB is here with Trade Cipher! Bri
 # Add divider line
 st.markdown("---")
 
+import streamlit as st
 try:
-    # For Python 3.0 and later
     from urllib.request import urlopen
 except ImportError:
-    # Fall back to Python 2's urllib2
     from urllib2 import urlopen
 
 import certifi
 import json
 
 def get_jsonparsed_data(url):
-    """
-    Receive the content of ``url``, parse it as JSON and return the object.
-
-    Parameters
-    ----------
-    url : str
-
-    Returns
-    -------
-    dict
-    """
     response = urlopen(url, cafile=certifi.where())
     data = response.read().decode("utf-8")
     return json.loads(data)
 
-url = ("https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from=2020-06-01&to=2020-09-10&apikey=7871663557cbf06ab075c5ba73a7098f")
-print(get_jsonparsed_data(url))
+def main():
+    st.title("Stock Dividend Calendar")
+
+    url = ("https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from=2020-06-01&to=2020-09-10&apikey=YOUR_API_KEY")
+    st.write("Fetching data from:", url)
+
+    try:
+        data = get_jsonparsed_data(url)
+        st.json(data)
+    except Exception as e:
+        st.error("An error occurred: " + str(e))
+
+if __name__ == "__main__":
+    main()
