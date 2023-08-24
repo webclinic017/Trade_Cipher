@@ -57,7 +57,7 @@ def main():
         df = pd.DataFrame(data)
 
         st.write("Dividend Data:")
-        st.dataframe(df.style.highlight_max(axis=0), height=600)
+        st.table(df)
         
     except Exception as e:
         st.error("An error occurred: " + str(e))
