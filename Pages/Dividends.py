@@ -61,7 +61,7 @@ def main():
         st.dataframe(df.style.highlight_max(axis=0), height=600)
         
         # Convert date column to datetime
-        df['date'] = pd.to_datetime(df['date'])
+        df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
 
         # Create a calendar heatmap using Plotly
         fig = px.scatter(df, x='date', y='symbol', text='amount', color='amount', 
