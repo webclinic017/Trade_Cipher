@@ -56,9 +56,6 @@ def main():
         data = get_jsonparsed_data(url)
         df = pd.DataFrame(data)
 
-                # Convert date column to datetime
-        df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-
         st.write("Dividend Data:")
         st.dataframe(df.style.highlight_max(axis=0), height=600)
         
