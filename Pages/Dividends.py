@@ -57,6 +57,7 @@ def main():
         df = pd.DataFrame(data)
 
         st.write("Dividend Data:")
+        numeric_columns = df.select_dtypes(include=['number']).columns
         st.dataframe(df.style.highlight_max(axis=0), height=600)
         
         # Convert date column to datetime
