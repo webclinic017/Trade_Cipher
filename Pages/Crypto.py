@@ -6,6 +6,8 @@ import json
 
 import http.client
 
+st.sidebar.image('Canion3D_original-logos_PNG.png', use_column_width=1)
+
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
