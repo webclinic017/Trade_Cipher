@@ -6,19 +6,6 @@ import json
 
 import http.client
 
-st.markdown("<h2 style='text-align: center; color: white;'>Select a dashboard to get started: </h2>", unsafe_allow_html=True)
-
-# List available page files
-page_files = os.listdir("Pages")
-page_files = [file for file in page_files if file.endswith(".py")]
-
-# Add a menu item to select pages
-selected_pages = st.multiselect("Select Trade Cipher Features", page_files)
-
-# Execute the selected pages
-for selected_page in selected_pages:
-    exec(open(f"Pages/{selected_page}").read())
-
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
 """, unsafe_allow_html=True)
