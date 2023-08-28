@@ -18,6 +18,8 @@ from django.db import models
 import os
 import streamlit as st
 
+st.sidebar.image('Canion3D_original-logos_PNG.png', use_column_width=1)
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
