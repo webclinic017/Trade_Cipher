@@ -76,21 +76,6 @@ if watchlist:
 else:
     st.warning("Your watchlist is empty.")
 
-# Add custom CSS to style the app
-st.markdown(
-    """
-    <style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        font-weight: bold;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 st.sidebar.text("Watch Bloomberg Video 24/7")
 
 st.sidebar.video('https://www.youtube.com/watch?v=DxmDPrfinXY')
