@@ -58,7 +58,23 @@ def main():
 
         st.write("Dividend Data:")
         st.table(df)
-        
+
+        # Customization
+        st.table(df,
+                  width=800,
+                  height=600,
+                  style={
+                      "table-layout": "fixed",
+                      "overflow-x": "scroll"
+                  })
+
+        # Animations
+        st.table(df.head(10), animate=True)
+
+        # Style
+        st.table(df,
+                  style_cell={"textAlign": "center"})
+
     except Exception as e:
         st.error("An error occurred: " + str(e))
 
