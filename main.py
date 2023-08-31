@@ -47,7 +47,7 @@ selected_pages = st.multiselect("Select Trade Cipher Features", page_files)
 
 # Execute the selected pages
 for selected_page in selected_pages:
-exec(open(f"Pages/{selected_page}").read())
+    exec(open(f"Pages/{selected_page}").read())
 
 st.markdown("""
 <a target="_blank" href="https://shareasale.com/r.cfm?b=1517949&amp;u=3574798&amp;m=57542&amp;urllink=&amp;afftrack="><img src="https://static.shareasale.com/image/57542/generic-728x90-green_00.jpg" border="0" alt="Buy Gold and Silver" /></a>
